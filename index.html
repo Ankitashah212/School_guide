@@ -19,41 +19,10 @@
 
         <button type="button" id="formSubmit" class="btn btn-primary">Submit</button>
     </form>
+    <script src="assets/js/logic.js"></script>
+
 </body>
 
-<script>
-    $(document).on("click", "#formSubmit", fetchData);
 
-
-
-    function fetchData() {
-
-        var schoolName = $("#school").val();
-        schoolName = schoolName.replace(' ', '+');
-
-
-        // &_page=1 for page 1 and so forth by default page 0
-        
-        var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?"
-            + "school.degrees_awarded.predominant=2,3&_fields=id,school.name,"
-            + "2013.student.size,2013.admissions.sat_scores.average.overall"
-            + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&"
-            + "school.name=" + schoolName;
-
-        console.log(schoolName);
-
-
-        $.ajax({
-            url: query,
-            method: 'GET',
-        }).done(function (result) {
-            // console.log(query);
-            console.log(result);
-            console.log(result.results["0"]["school.name"]);
-
-        });// end of Ajax call
-    } // end of function
-
-</script>
 
 </html>
