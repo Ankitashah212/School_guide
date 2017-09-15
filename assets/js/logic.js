@@ -23,15 +23,20 @@ The result fetches metadata and result array. Metadata says how many total resul
 you can add page count as part of query
 */
 
-    $(document).on("click", "#formSubmit", fetchData);
+$(document).ready(function() {
 
 
+    jQuery("form").submit(fetchData);
 
-    function fetchData() {
+    function fetchData(event) {
 
-        var schoolName = $("#school").val();
+        console.log("fetchData() Called")
+        event.preventDefault();
+        
+        var schoolName = $("#school").val().trim();
         schoolName = schoolName.replace(' ', '+');
-
+        
+        console.log("schoolname", schoolName);
 
         // &_page=1 for page 1 and so forth by default page 0
         
@@ -41,17 +46,75 @@ you can add page count as part of query
             + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&"
             + "school.name=" + schoolName;
 
-        console.log(schoolName);
-
-
         $.ajax({
             url: query,
             method: 'GET',
-        }).done(function (result) {
+        //}).done(function (result) {
+        }).success(function (result) {
             // console.log(query);
             console.log(result);
             console.log(result.results["0"]["school.name"]);
-
-        });// end of Ajax call
+            displayData(result);
+            //LARRYP: The code below should work, tried data: result, result.results, result.results[0] and each time it says "No Data" even though we have data
+//            $('#clienti').bootstrapTable({
+                // data: result.results[0]
+                //data: result.results,
+                //data: result,
+                //rows: 1
+//                load: result.results
+//            });
+         });// end of Ajax call
     } // end of function
 
+    function displayData(result) {
+        var mydata = [
+            {"Nome":"",
+                "Cognome":"",
+                "DataN":"0000-00-00",
+                "Provincia":"",
+                "Comune":"",
+                "CAP":"",
+                "Indirizzo":"",
+                "Fisso":"",
+                "Mobile":"",
+                "Note":""
+            },
+            {"Nome":"Federico",
+                "Cognome":"Lupieri",
+                "DataN":"2015-09-16",
+                "Provincia":"",
+                "Comune":"",
+                "CAP":"34170",
+                "Indirizzo":"Via Ascoli 1",
+                "Fisso":"00112233445566",
+                "Mobile":"00112233445566",
+                "Note":"Vediamo se funziona questo"
+            }
+        ];
+ 
+        console.log("Inside displayData()");
+        /* result.results[0]["2013.admissions.sat_scores.average.overall"]  */
+        console.log("result", result);
+        var name =  result.results[0]["school.name"]
+        var sat = result.results[0]["2013.admissions.sat_scores.average.overall"];
+        var studentSize = result.results[0]["2013.student.size"]
+        var id = result.results[0]["id"]
+        console.log("name", name);
+        console.log("id", id);
+        console.log("studentSize", studentSize);
+        console.log("sat", sat);
+        var mydata2 = [
+            {
+                "school.name":name,
+                "id":id,
+                "2013.student.size":studentSize,
+                "2013.admissions.sat_scores.average.overall":sat
+            }
+        ];
+        $('#clienti').bootstrapTable({
+            data: mydata2
+        });
+    
+    }
+
+}) //$(document).ready(function() {
