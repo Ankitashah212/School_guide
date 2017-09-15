@@ -76,34 +76,15 @@ $(document).ready(function() {
 
         // &_page=1 for page 1 and so forth by default page 0
         
-        var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?"
-            + "school.degrees_awarded.predominant=2,3&" +
+        var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
+            "school.degrees_awarded.predominant=2,3&" +
             "_fields=id," +
-            "school.name,"
-            + "2013.student.size," +
+            "school.name," +
+            "2013.student.size," +
             "2013.admissions.sat_scores.average.overall&" +
             "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&"+
             "school.name=" + schoolName;
 
-        //DEBUG: TRYING WEB EXAMPLE!!
-
-        $.ajax({
-            "url": query,
-            "done": function(json) {
-                var tableHeaders;
-                $.each(json.columns, function(i, val){
-                    tableHeaders += "<th>" + val + "</th>";
-                });
-                 
-                $("#tableDiv").empty();
-                $("#tableDiv").append('<table id="displayTable" class="display" cellspacing="0" width="100%"><thead><tr>' + tableHeaders + '</tr></thead></table>');
-                //$("#tableDiv").find("table thead tr").append(tableHeaders);  
-                 
-                $('#displayTable').dataTable(json);
-            },
-            "dataType": "json"
-        });
-    
         $.ajax({
             url: query,
             method: 'GET',
@@ -113,45 +94,10 @@ $(document).ready(function() {
             console.log(result);
             console.log(result.results["0"]["school.name"]);
             displayData(result);
-            //LARRYP: The code below should work, tried data: result, result.results, result.results[0] and each time it says "No Data" even though we have data
-            //$('#clienti').bootstrapTable({
-                // data: result.results[0]
-                //data: result.results,
-                //data: result,
-                //rows: 1
-                //load: result.results
-            //});
         });// end of Ajax call
     } // fetchData()
         
     function displayData(result) {
-        // Not Currently Used (Example from Web)
-        var mydata = [
-            {
-                "Nome":"",
-                "Cognome":"",
-                "DataN":"0000-00-00",
-                "Provincia":"",
-                "Comune":"",
-                "CAP":"",
-                "Indirizzo":"",
-                "Fisso":"",
-                "Mobile":"",
-                "Note":""
-            },
-            {
-                "Nome":"Federico",
-                "Cognome":"Lupieri",
-                "DataN":"2015-09-16",
-                "Provincia":"",
-                "Comune":"",
-                "CAP":"34170",
-                "Indirizzo":"Via Ascoli 1",
-                "Fisso":"00112233445566",
-                "Mobile":"00112233445566",
-                "Note":"Vediamo se funziona questo"
-            }
-        ]; //mydata
     
         console.log("Inside displayData()");
         /* result.results[0]["2013.admissions.sat_scores.average.overall"]  */
