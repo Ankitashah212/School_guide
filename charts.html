@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+
+<body>
+    <div class="chart1">
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- commenting our the bar charts, didn't really like it but keeping it for team to decide -->
+    <!--div class="chart2">
+        <canvas id="barChart"></canvas>
+    </div -->
+    <script>
+        // pie chart
+
+        var ctx = document.getElementById("pieChart");
+        //data fot pie chart
+        data = {
+            datasets: [{
+                backgroundColor: [
+                    //set colors for chart
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                //data for pie
+                data: [0.5, 0.6, 0.2, 0.1, 1.1, 0.8]
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'Whilte',
+                'Black',
+                'Asian',
+                'pacific',
+                'native American',
+                'others'
+            ]
+        };
+        new Chart(ctx, {
+            data: data,
+            type: 'pie',
+        });
+
+
+        // bar part, i'll let the team decide on which one to use
+        // Bar chart
+/*
+        var cht = document.getElementById("barChart");
+        //data fot bar chart
+        data = {
+            datasets: [{
+                backgroundColor: [
+                    //set colors for chart
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                //data for bar
+                data: [0.5, 0.6, 0.2, 0.1, 1.1, 0.8]
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'Whilte',
+                'Black',
+                'Asian',
+                'pacific',
+                'native American',
+                'others'
+            ]
+        };
+        new Chart(ctx, {
+            data: data,
+            type: 'bar',
+        });
+
+        */
+    </script>
+
+    </canvas>
+</body>
+
+</html>

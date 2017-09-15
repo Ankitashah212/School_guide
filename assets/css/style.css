@@ -13,4 +13,16 @@ input {
 h2 {
     text-align: center;
 }
+.chart1{
+    height: 400px;
+    width: 400px;
+    background-color: whitesmoke;
+    float: left;
+}
+.chart2{
+    height: 400px;
+    width: 400px;
+    background-color: whitesmoke;
+    float: right;
+}
 
