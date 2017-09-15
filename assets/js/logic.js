@@ -67,8 +67,10 @@ $(document).ready(function() {
     } // end of function
 
     function displayData(result) {
+        // Not Currently Used (Example from Web)
         var mydata = [
-            {"Nome":"",
+            {
+                "Nome":"",
                 "Cognome":"",
                 "DataN":"0000-00-00",
                 "Provincia":"",
@@ -79,7 +81,8 @@ $(document).ready(function() {
                 "Mobile":"",
                 "Note":""
             },
-            {"Nome":"Federico",
+            {
+                "Nome":"Federico",
                 "Cognome":"Lupieri",
                 "DataN":"2015-09-16",
                 "Provincia":"",
@@ -105,12 +108,16 @@ $(document).ready(function() {
         console.log("sat", sat);
         var mydata2 = [
             {
-                "school.name":name,
-                "id":id,
-                "2013.student.size":studentSize,
-                "2013.admissions.sat_scores.average.overall":sat
+                "school.name":"" + name,
+                "id":"" + id,
+                "2013.student.size":"" + studentSize,
+                "2013.admissions.sat_scores.average.overall":"" +  sat,
+                // "rows":result.results.length
+                "rows":"" + 1
             }
         ];
+        console.log("mydata2", mydata2);
+
         $('#clienti').bootstrapTable({
             data: mydata2
         });
