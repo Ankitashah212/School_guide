@@ -1,3 +1,7 @@
+/* A D D E D   C H A N G E S  */
+
+
+
 /* N A V B A R  */
 .navbar {
     padding-bottom: 0;
@@ -74,34 +78,4 @@ html, body{
     width: 50%;
 }
 
- 
-body {
-    background-color: lightgray;
-}
-
-p {
-    margin: 0 0 10px 0;
-}
-input {
-    font-size: 20px;
-}
-
-h2 {
-    text-align: center;
-}
-.chart1{
-    height: 400px;
-    width: 400px;
-    background-color: whitesmoke;
-    float: left;
-}
-.chart2{
-    height: 400px;
-    width: 400px;
-    background-color: whitesmoke;
-    float: right;
-}
-
-#drawChart{
-    margin-left: 10px;
-}
+/* R E S U L T S   P A G E  */
