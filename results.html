@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,62 +15,138 @@
 
     <!-- Scripts -->
     <script src="assets/js/results.js"></script>
-
+    <!-- CSS Reset -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <!-- CSS  -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Results</title>
 </head>
+
 <body>
-    
-    <div id="charts">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="home" aria-expanded="false" data-ytta-id="-">Bar Graph</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" data-ytta-id="-" aria-expanded="true">Profile</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
-                    data-ytta-id="-">
-                      Dropdown
-                    </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" id="dropdown1-tab" href="#dropdown1" role="tab" data-toggle="tab" aria-controls="dropdown1" data-ytta-id="-">@fat</a>
-                    <a class="dropdown-item" id="dropdown2-tab" href="#dropdown2" role="tab" data-toggle="tab" aria-controls="dropdown2" data-ytta-id="-">@mdo</a>
+    <div class="wrapper">
+
+        <!-- N A V B A R -->
+        <div class="sticky-top">
+
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/images/white-icon-sized.png" alt="Brand Icon">
+                    Find Schools
+                </a>
+                <span class="navbar-text">
+                    Get that education!
+                </span>
+            </nav>
+
+            <!-- F L O A T I N G   S E A R C H   B O X -->
+            <div class="container rec-container">
+
+                <div class="form_contact" method="post">
+                    <form action="/action_page.php">
+                        <!-- S C H O O L   N A M E -->
+                        <input id="school" class="form-control mr-sm-2" type="text" placeholder="School Name">
+
+                        <!-- S T A T E  -->
+                        <input id="state" class="form-control mr-sm-2" type="text" placeholder="State">
+
+                        <!-- T U I T I O N  -->
+                        <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
+
+                        <!-- S A T   S C O R E S  -->
+                        <input id="sat" class="form-control mr-sm-2" type="number" placeholder="Maximum SAT">
+
+                        <!-- A C T   S C O R E S -->
+                        <input id="act" class="form-control mr-sm-2" type="number" placeholder="Maximum ACT">
+
+                        <!-- D E G R E E   B.A -->
+                        <div class="form-group">
+                            <label for="degree">Degree Search</label>
+                            <select class="form-control" id="degree">
+                                            <option>Education</option>
+                                            <option>Mathematics</option>
+                                            <option>Business Marketing</option>
+                                            <option>Communications Technology</option>
+                                            <option>Language</option>
+                                            <option>Visual Performing</option>
+                                            <option>Engineering Technology</option>
+                                            <option>Parks Recreation Fitness</option>
+                                            <option>Agriculture</option>
+                                            <option>Security Law Enforcement</option>
+                                            <option>Computer</option>
+                                            <option>Precision Production</option>
+                                            <option>Humanities</option>
+                                            <option>Library</option>
+                                            <option>Psychology</option>
+                                            <option>Social Science</option>
+                                            <option>Legal</option>
+                                            <option>English</option>
+                                            <option>Construction</option>
+                                            <option>Military</option>
+                                            <option>Communication</option>
+                                            <option>Public Administration Social Service</option>
+                                            <option>Architecture</option>
+                                            <option>Ethnic Cultural Gender</option>
+                                            <option>Resources</option>
+                                            <option>Health</option>
+                                            <option>Engineering</option>
+                                            <option>History</option>
+                                            <option>Theology Religious Vocation</option>
+                                            <option>Transportation</option>
+                                            <option>Physical Science</option>
+                                            <option>Science Technology</option>
+                                            <option>Biological</option>
+                                            <option>Family Consumer Science</option>
+                                            <option>Philosophy Religious</option>
+                                            <option>Personal Culinary</option>
+                                            <option>Multidiscipline</option>
+                                            <option>Mechanic Repair Technology</option>
+                                        </select>
+                        </div>
+
+                        <button type="submit" id="form-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                 </div>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade active show" id="bar-graph" role="tabpanel" aria-labelledby="home-tab" aria-expanded="true">
-                
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
-                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation
-                    +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-                    craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-                    ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus
-                    mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny
-                    pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
-                    richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus
-                    tattooed echo park.</p>
-            </div>
-            <div class="tab-pane fade" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab">
-                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro
-                    fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer,
-                    iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-                    Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles
-                    pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard
-                    of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-            </div>
-            <div class="tab-pane fade" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">
-                <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master
-                    cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art
-                    party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh
-                    mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache
-                    readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh
-                    echo park vegan.</p>
+        </div>
+
+        <!-- C O N T E N T  B O X  -->
+        <div class="container page-body">
+            <div class="row">
+                <div class="col content">
+
+                    <div id="charts">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="home" aria-expanded="false"
+                                    data-ytta-id="-">Bar Graph</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" data-ytta-id="-"
+                                    aria-expanded="true">Profile</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade active show" id="bar-graph" role="tabpanel" aria-labelledby="home-tab" aria-expanded="true">
+
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
+                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+                                    Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan
+                                    four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft
+                                    beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda
+                                    labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit
+                                    sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable
+                                    jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+                                    stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </body>
+
 </html>
