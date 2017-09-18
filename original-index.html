@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="http://www.harvestmooncandle.com/securedownload.png"/> 
+        <title>University Search</title>
+        <!-- jQuery & jQuery UI -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <!-- Javascript Links -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>        
+        <!-- Logic.js File -->
+        <script src="assets/js/logic.js"></script>        
+        <!-- CSS Reset -->
+        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">        
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <!-- CSS  -->
+        <link rel="stylesheet" href="assets/css/style.css">        
+    </head>
+
+<body>
+          
+     <div class="container">
+        <hr>
+        <h2>School Search</h2>
+        <hr>
+
+        <form>
+            <div>
+                <p>Enter a College or University</p>
+                <input type="text" id="school" size="25">
+                <br>
+                <br>
+                <input type="submit" id="formsubmit" class = "btn btn-primary">
+            </div>
+        </form>
+
+        <br>
+
+        <div id="dataDiv">
+            <!-- <table data-toggle="table" class="display table table-bordered" data-url="php/process.php?method=fetchdata"> -->
+            <table data-toggle="table" class="display table table-bordered" id="clienti">
+                <thead>
+                    <tr>
+                        <th data-field="school.name">School</th>
+                        <th data-field="id">ID</th>
+                        <th data-field="2013.student.size">Student Size</th>
+                        <th data-field="2013.admissions.sat_scores.average.overall">SAT</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Dynamically fill using jquery -->
+                </tbody>
+            </table>            
+        </div>
+
+        <br>
+
+        <div class="chart1">
+            <canvas id="pieChart"></canvas>
+        </div>
+
+        <button class="btn btn-primary" id="drawChart">Draw Chart</button>
+
+    </div> <!-- class="container" -->
+
+</body>
+
+</html>

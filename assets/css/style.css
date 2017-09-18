@@ -1,31 +1,95 @@
- 
-body {
-    background-color: lightgray;
+/* N A V B A R  */
+
+#limit {
+    width: 100px;
 }
 
-p {
-    margin: 0 0 10px 0;
-}
-input {
-    font-size: 20px;
+.navbar-text {
+    width: 40%;
+    padding-left: 5%;
 }
 
-h2 {
+/* T O   T O P */
+
+.toTop {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+/* P A G E  B O D Y  */
+
+.rec-container {
+    max-width: 20%;
+    float: left;
     text-align: center;
 }
-.chart1{
-    height: 400px;
-    width: 400px;
-    background-color: whitesmoke;
-    float: left;
-}
-.chart2{
-    height: 400px;
-    width: 400px;
-    background-color: whitesmoke;
-    float: right;
+
+.page-body {
+    max-width: 45%;
 }
 
-#drawChart{
-    margin-left: 10px;
+.input-box {
+    padding: 0;
+}  
+
+/* L O A D E D   C O N T E N T */
+
+.gif-btn {
+    font-size: 20px;
+    width: 100%;
+
+    margin-top: 10px;
+} 
+
+.loaded-gif {
+    padding-left: 25px;
+    margin-top: 10px;
+    display: block;
+    width: 65%;
+}
+
+.ratings {
+    float: left;
+    margin-top: 10px;
+    height: 25px;
+    padding-top: 5px;
+    width: 100px;
+    font-size: 13px;
+}
+
+/* F O O T E R  */
+
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -60px;
+}
+
+.push {
+    clear: both;
+    height: 60px;
+}
+
+.footer-content {
+    color: #444;
+    font-family:'Open Sans', sans-serif;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+} 
+
+.fixed-footer {
+    margin-top: 20px;
+    width: 100%;
+    max-height: 60px;
+}
+
+.center-footer {
+    margin: 0 auto;
+    width: 50%;
 }

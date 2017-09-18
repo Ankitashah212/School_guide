@@ -1,91 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-            integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
- -->
-        <title>School Search</title>
-
-
-        <!-- jQuery & jQuery UI -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://www.harvestmooncandle.com/securedownload.png" />
+    <title>University Search</title>
+    <!-- jQuery & jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-        <!-- Javascript Links -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>        
-        <!-- Logic.js File -->
-        <script src="assets/js/logic.js"></script>        
-        <!-- CSS Reset -->
-        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">        
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-        <!-- CSS  -->
-        <link rel="stylesheet" href="assets/css/style.css">        
-    </head>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Javascript Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>
+    <!-- Logic.js File -->
+    <script src="assets/js/logic.js"></script>
+    <!-- CSS Reset -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <!-- CSS  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
 <body>
 
-    <!--
-        Need to add some style
-        Hoping to get user input for school name and year for the data
-        User selection on what all data they want - check boxes
-        -so far I have ethenicity , sat scores for entry, and year for data in mind
-        open for all suggestions.
+    <div class="wrapper">
 
-        I am visualizing year as a dropdown - from 2010 to 2014
-        Need input on how to show results - will be useful if we can figure out how to draw charts in JS
+<!-- N A V B A R -->
+        <div class="sticky-top">
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">Find Schools</a>
+                <span class="navbar-text">
+                    Get that education!
+                </span>
 
-        planning to have only 10 results so that we can have collapsable and expandable reult blocks
-     -->
-     <!-- <img class="BG" src="/images/WhiteBGWithHole.jpg" alt="Page Not Found (404)."> -->
-          
-     <div class="container">
-        <hr>
-        <h2>School Search</h2>
-        <hr>
+                <div class="links">
+                    <a href="#">Links</a>
+                    <a href="#">Links</a>
+                    <a href="#">Links</a>                    
+                </div>
+                
+            </nav>
 
-        <form>
-            <div>
-                <p>Enter a College or University</p>
-                <input type="text" id="school" size="25">
-                <br>
-                <br>
-                <input type="submit" id="formsubmit" class = "btn btn-primary">
+<!-- F L O A T I N G   S E A R C H   B O X -->
+            <div class="container rec-container">
+
+                <div class="form_contact" method="post">
+                    <form action="/action_page.php">
+                <!-- S C H O O L   N A M E -->
+                <label for="school">School</label>                   
+                    <input id="school" class="form-control mr-sm-2" type="text" placeholder="School Name">
+
+                <!-- S T A T E  -->
+                <label for="state">State</label>                                   
+                    <input id="state" class="form-control mr-sm-2" type="text" placeholder="State">
+
+                <!-- T U I T I O N  -->
+                <label for="tuition">Tuition</label>                                   
+                    <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
+
+                <!-- S A T   S C O R E S  -->
+                <label for="sat">SAT</label>                                   
+                    <input id="sat" class="form-control mr-sm-2" type="number" placeholder="Maximum SAT">
+
+                <!-- A C T   S C O R E S -->
+                <label for="act">ACT</label>                                   
+                    <input id="act" class="form-control mr-sm-2" type="number" placeholder="Maximum ACT">
+
+                <!-- D E G R E E   B.A -->
+                <label for="degree">B.A Available</label>                                   
+                    <!-- drop down selection -->
+
+                <button type="submit"  id="form-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>                    
             </div>
-        </form>
-
-        <br>
-
-        <div id="dataDiv">
-            <!-- <table data-toggle="table" class="display table table-bordered" data-url="php/process.php?method=fetchdata"> -->
-            <table data-toggle="table" class="display table table-bordered" id="clienti">
-                <thead>
-                    <tr>
-                        <th data-field="school.name">School</th>
-                        <th data-field="id">ID</th>
-                        <th data-field="2013.student.size">Student Size</th>
-                        <th data-field="2013.admissions.sat_scores.average.overall">SAT</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    <!-- Dynamically fill using jquery -->
-                </tbody>
-            </table>            
         </div>
 
-        <br>
-
-        <div class="chart1">
-            <canvas id="pieChart"></canvas>
+<!-- C O N T E N T  B O X  -->
+        <div class="container page-body">
+            <div class="row">
+                <div class="col content">
+                    <div id="gif-box"></div>
+                </div>
+            </div>
         </div>
 
-        <button class="btn btn-primary" id="drawChart">Draw Chart</button>
-
-    </div> <!-- class="container" -->
+ <!-- R E T U R N   T O   T O P  -->
+        <div class="toTop">
+            <a href="#" class="toTop badge badge-info">Return to Top</a>
+        </div>
+        <div class="push"></div>
+    </div>
 
 </body>
 
