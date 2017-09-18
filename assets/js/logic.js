@@ -65,7 +65,10 @@ $(document).ready(function() {
         //******************************************/
     
         function fetchData(event) {
-            
+
+            //Clear Table
+            //$('#clienti').bootstrapTable('removeAll');
+
             console.log("fetchData() Called")
             event.preventDefault();
             
@@ -74,7 +77,8 @@ $(document).ready(function() {
             
             console.log("schoolname", schoolName);
     
-            // &_page=1 for page 1 and so forth by default page 0
+            //Clear Field
+            $('#school').val('');
             
             var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
                 "school.degrees_awarded.predominant=2,3&" +
@@ -88,32 +92,22 @@ $(document).ready(function() {
             $.ajax({
                 url: query,
                 method: 'GET',
-            //}).done(function (result) {
             }).done(function (result) {
-                // console.log(query);
-                console.log(result);
-                console.log(result.results["0"]["school.name"]);
-                console.log("Outputting id='table'");
                 displayData(result);
             });// end of Ajax call
         } // fetchData()
             
         function displayData(result) {
     
-            console.log("Inside displayData()");
             /* result.results[0]["2013.admissions.sat_scores.average.overall"]  */
             console.log("result.results.length", result.results.length);
+            
             var mydata2 = [];
             for (i=0; i < result.results.length; i++) {
                 var name =  result.results[i]["school.name"]
                 var sat = result.results[i]["2013.admissions.sat_scores.average.overall"];
                 var studentSize = result.results[i]["2013.student.size"]
                 var id = result.results[i]["id"]
-                console.log("result", result);
-                console.log("name", name);
-                console.log("id", id);
-                console.log("studentSize", studentSize);
-                console.log("sat", sat);
                 var tmp = [
                     {
                         "school.name" : "" + name,
@@ -126,9 +120,12 @@ $(document).ready(function() {
             }
             console.log("mydata2", mydata2);
     
-            $('#clienti').bootstrapTable({
+            $('#clienti').bootstrapTable({});
+            $('#clienti').bootstrapTable("load", mydata2);
+/*             $('#clienti').bootstrapTable({
                 data: mydata2
             });
+ */
             $('#clienti').on('click-cell.bs.table', function (field, value, row, $el) {
                 if (value !="type"){
                     //alert($el.id+"-"+$el.name+"-"+$el.type);
@@ -140,7 +137,6 @@ $(document).ready(function() {
     
         function displayPieChart(event) {
     
-            console.log("event", event);
             var schoolName = $("#school").val().trim();
             schoolName = schoolName.replace(' ', '+');
             if (schoolName == "") {
@@ -167,15 +163,12 @@ $(document).ready(function() {
                 //"school.name=university+texas+austin"
                 "school.name=" + schoolName
     
-            console.log("query", query);
-    
             var asian, black, white, hispanic, nRAlien, others;
             
             $.ajax({
                 url: query,
                 method: 'GET',
             }).done(function (school) {
-                // console.log(query);
                 console.log(school);
                 white = school.results["0"]["2014.student.demographics.race_ethnicity.white"];
                 nRAlien = (school.results["0"]["2014.student.demographics.race_ethnicity.non_resident_alien"]);
