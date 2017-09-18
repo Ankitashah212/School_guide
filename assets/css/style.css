@@ -37,28 +37,7 @@
 }  
 
 /* L O A D E D   C O N T E N T */
-.gif-btn {
-    font-size: 20px;
-    width: 100%;
 
-    margin-top: 10px;
-} 
-
-.loaded-gif {
-    padding-left: 25px;
-    margin-top: 10px;
-    display: block;
-    width: 65%;
-}
-
-.ratings {
-    float: left;
-    margin-top: 10px;
-    height: 25px;
-    padding-top: 5px;
-    width: 100px;
-    font-size: 13px;
-}
 
 /* F O O T E R  */
 html, body{
