@@ -54,6 +54,14 @@ $(document).ready(function() {
     //Input Form Submit Button calls fetchData() Function
     jQuery("form").submit(fetchData);
 
+    // Call fetchData() on enter click in Form input
+    $("#school").one("keyup", function (e) {
+        //If "enter" pressed, run fetchData()
+        if (e.which == 13) {
+            jQuery("form").submit(fetchData);            
+        }
+    })
+
     //Example Calling NamedFunction on Button Click:
     //$("#selector").on("click", namedFunction);
 
@@ -65,18 +73,14 @@ $(document).ready(function() {
     //******************************************/
 
     function fetchData(event) {
-        
         console.log("fetchData() Called")
         event.preventDefault();
-        
         var schoolName = $("#school").val().trim();
         schoolName = schoolName.replace(' ', '+');
-        
         console.log("schoolname", schoolName);
-
         // &_page=1 for page 1 and so forth by default page 0
         
-        var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
+        let query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
             "school.degrees_awarded.predominant=2,3&" +
             "_fields=id," +
             "school.name," +
@@ -84,49 +88,22 @@ $(document).ready(function() {
             "2013.admissions.sat_scores.average.overall&" +
             "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&"+
             "school.name=" + schoolName;
-
         $.ajax({
             url: query,
             method: 'GET',
         //}).done(function (result) {
         }).done(function (result) {
-            // console.log(query);
-            console.log(result);
-            console.log(result.results["0"]["school.name"]);
-            displayData(result);
+            // Append new row to table with data
+            $("#table-body").append(
+                '<tr>'
+                + '<td>' +result.results["0"]["school.name"] + '</td>'
+                + '<td>' +result.results["0"].id + '</td>'
+                + '<td>' +result.results["0"]["2013.student.size"] + '</td>'
+                + '<td>' +result.results["0"]["2013.admissions.sat_scores.average.overall"] + '</td>'
+                + '</tr>'
+            )
         });// end of Ajax call
-    } // fetchData()
-        
-    function displayData(result) {
-    
-        console.log("Inside displayData()");
-        /* result.results[0]["2013.admissions.sat_scores.average.overall"]  */
-        console.log("result", result);
-        var name =  result.results[0]["school.name"]
-        var sat = result.results[0]["2013.admissions.sat_scores.average.overall"];
-        var studentSize = result.results[0]["2013.student.size"]
-        var id = result.results[0]["id"]
-        console.log("name", name);
-        console.log("id", id);
-        console.log("studentSize", studentSize);
-        console.log("sat", sat);
-        var mydata2 = [
-            {
-                "school.name":"" + name,
-                "id":"" + id,
-                "2013.student.size":"" + studentSize,
-                "2013.admissions.sat_scores.average.overall":"" +  sat,
-                // "rows":result.results.length
-                "rows":"" + 1
-            }
-        ];
-        console.log("mydata2", mydata2);
-
-        $('#clienti').bootstrapTable({
-            data: mydata2
-        });
-    
-    } //displayData()
+    }   
 
     function displayPieChart(event) {
 
@@ -138,7 +115,7 @@ $(document).ready(function() {
             return;
         }
         
-        var query = "https://api.data.gov/ed/collegescorecard/v1/schools?fields=school.name," +
+        let query = "https://api.data.gov/ed/collegescorecard/v1/schools?fields=school.name," +
             "id," +
             "2014.student.demographics.race_ethnicity.white," +
             "2014.student.demographics.race_ethnicity.black," +
