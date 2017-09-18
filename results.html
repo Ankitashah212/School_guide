@@ -6,11 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Libraries -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css' />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
-    
+
+    <!-- Scripts -->
+    <script src="assets/js/results.js"></script>
+
     <title>Results</title>
 </head>
 <body>
@@ -18,11 +22,10 @@
     <div id="charts">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="false" data-ytta-id="-">Home</a>
+                <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="home" aria-expanded="false" data-ytta-id="-">Bar Graph</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" data-ytta-id="-"
-                    aria-expanded="true">Profile</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" data-ytta-id="-" aria-expanded="true">Profile</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
@@ -36,14 +39,10 @@
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab" aria-expanded="false">
-                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,
-                    retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-                    butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson
-                    ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel,
-                    butcher voluptate nisi qui.</p>
+            <div class="tab-pane fade active show" id="bar-graph" role="tabpanel" aria-labelledby="home-tab" aria-expanded="true">
+                
             </div>
-            <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="true">
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
                 <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation
                     +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
                     craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
