@@ -45,7 +45,7 @@ The result fetches metadata and result array. Metadata says how many total resul
 you can add page count as part of query
 */
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     //*******************************************/
     //****************  EVENTS  *****************/
@@ -58,7 +58,7 @@ $(document).ready(function() {
     $("#school").one("keyup", function (e) {
         //If "enter" pressed, run fetchData()
         if (e.which == 13) {
-            jQuery("form").submit(fetchData);            
+            jQuery("form").submit(fetchData);
         }
     })
 
@@ -79,32 +79,32 @@ $(document).ready(function() {
         schoolName = schoolName.replace(' ', '+');
         console.log("schoolname", schoolName);
         // &_page=1 for page 1 and so forth by default page 0
-        
+
         let query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
             "school.degrees_awarded.predominant=2,3&" +
             "_fields=id," +
             "school.name," +
             "2013.student.size," +
             "2013.admissions.sat_scores.average.overall&" +
-            "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&"+
+            "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&" +
             "school.name=" + schoolName;
         $.ajax({
             url: query,
             method: 'GET',
-        //}).done(function (result) {
+            //}).done(function (result) {
         }).done(function (result) {
             // Append new row to table with data
             $("#table-body").append(
                 '<tr>'
-// L I N K   T O  R E S U L T S   P A G E
-                + '<td><a class="results-link" href="#">' +result.results["0"]["school.name"] +'</a></td>'
-                + '<td>' +result.results["0"].id + '</td>'
-                + '<td>' +result.results["0"]["2013.student.size"] + '</td>'
-                + '<td>' +result.results["0"]["2013.admissions.sat_scores.average.overall"] + '</td>'
+            // L I N K   T O  R E S U L T S   P A G E
+                + '<td><a class="results-link" href="#">' + result.results["0"]["school.name"] + '</a></td>'
+                + '<td>' + result.results["0"].id + '</td>'
+                + '<td>' + result.results["0"]["2013.student.size"] + '</td>'
+                + '<td>' + result.results["0"]["2013.admissions.sat_scores.average.overall"] + '</td>'
                 + '</tr>'
             )
         });// end of Ajax call
-    }   
+    }
 
     function displayPieChart(event) {
 
@@ -115,14 +115,14 @@ $(document).ready(function() {
             alert("Please Enter a School Name.");
             return;
         }
-        
+
         let query = "https://api.data.gov/ed/collegescorecard/v1/schools?fields=school.name," +
             "id," +
             "2014.student.demographics.race_ethnicity.white," +
             "2014.student.demographics.race_ethnicity.black," +
             "2014.student.demographics.race_ethnicity.hispanic," +
             "2014.student.demographics.race_ethnicity.asian," +
-            "2014.student.demographics.race_ethnicity.non_resident_alien," +"&" +
+            "2014.student.demographics.race_ethnicity.non_resident_alien," + "&" +
             "sort=2014.completion.rate_suppressed.overall:desc&" +
             "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&" +
             //"school.name=university+texas+austin"
@@ -131,7 +131,7 @@ $(document).ready(function() {
         console.log("query", query);
 
         var asian, black, white, hispanic, nRAlien, others;
-        
+
         $.ajax({
             url: query,
             method: 'GET',
@@ -146,10 +146,9 @@ $(document).ready(function() {
             others = 1 - (white + black + hispanic + asian + nRAlien);
             console.log(white, nRAlien, hispanic, black, asian, others);
             var ctx = document.getElementById("pieChart");
-            console.log("white, nRAlien, hispanic, black, asian, others");
-    
+
             console.log(white, nRAlien, hispanic, black, asian, others);
-    
+
             //data fot pie chart
             data = {
                 datasets: [{
@@ -165,7 +164,7 @@ $(document).ready(function() {
                     //data for pie
                     data: [white, black, asian, hispanic, nRAlien, others]
                 }],
-    
+
                 // These labels appear in the legend and in the tooltips when hovering different arcs
                 labels: [
                     'White',
@@ -181,10 +180,10 @@ $(document).ready(function() {
                 data: data,
                 type: 'pie',
             });
-    
-        
+
+
         });// end of Ajax call
-            
+
     }; //displayPieChart
 
 
@@ -193,6 +192,6 @@ $(document).ready(function() {
     //******************************************/
 
     //No Main Code Yet!
-  
+
 
 }) ///$(document).ready(function() {
