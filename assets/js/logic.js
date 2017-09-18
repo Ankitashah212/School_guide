@@ -96,7 +96,8 @@ $(document).ready(function() {
             // Append new row to table with data
             $("#table-body").append(
                 '<tr>'
-                + '<td>' +result.results["0"]["school.name"] + '</td>'
+// L I N K   T O  R E S U L T S   P A G E
+                + '<td><a class="results-link" href="#">' +result.results["0"]["school.name"] +'</a></td>'
                 + '<td>' +result.results["0"].id + '</td>'
                 + '<td>' +result.results["0"]["2013.student.size"] + '</td>'
                 + '<td>' +result.results["0"]["2013.admissions.sat_scores.average.overall"] + '</td>'
