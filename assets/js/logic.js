@@ -101,7 +101,10 @@ $(document).ready(function() {
     
             /* result.results[0]["2013.admissions.sat_scores.average.overall"]  */
             console.log("result.results.length", result.results.length);
-            
+
+            //Clearing Table
+            $('#clienti').bootstrapTable('removeAll');
+
             var mydata2 = [];
             for (i=0; i < result.results.length; i++) {
                 var name =  result.results[i]["school.name"]
@@ -120,12 +123,14 @@ $(document).ready(function() {
             }
             console.log("mydata2", mydata2);
     
-            $('#clienti').bootstrapTable({});
-            $('#clienti').bootstrapTable("load", mydata2);
-/*             $('#clienti').bootstrapTable({
+             $('#clienti').bootstrapTable({
                 data: mydata2
             });
- */
+
+            //Refresh Data by Appending it
+            $('#clienti').bootstrapTable('append', mydata2);
+
+            //Add Row Click Event to Table
             $('#clienti').on('click-cell.bs.table', function (field, value, row, $el) {
                 if (value !="type"){
                     //alert($el.id+"-"+$el.name+"-"+$el.type);
