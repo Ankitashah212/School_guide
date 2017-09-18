@@ -25,16 +25,22 @@ function GetAdmmisionData(object) {
 
 function GetDemoData(object) {
     var data = [];
-    
-    // For each property (for our objects it should be each year), 
+    // For each property (for our objects it corresponse to different ethnicities), 
     for (var property in object[2014].student.demographics.race_ethnicity) {
-        // if that property(year) exists
-        if (object.hasOwnProperty(property)) {
-            console.log(property);
+        // console.log("Property", property)
+        // if that property(ethnicity) exists && and it's one of the types we are lookign for
+        if (property == "aian" || 
+            property == "asian" || 
+            property == "black" || 
+            property == "hispanic" || 
+            property == "non_resident_alien" || 
+            property == "two_or_more") 
+        {
+            var tempObject = {label: property, count: object[2014].student.demographics.race_ethnicity[property]};
+            data.push(tempObject);
         }
     }
-    
-    console.log("Data Set for Demo Graph", data);
+    return data;
 }
 
 function DrawBarGraph(data) {
@@ -62,8 +68,8 @@ function DrawBarGraph(data) {
     });
 }
 
-function DrawDemoGraph(object) {
-
+function DrawDemoGraph(data) {
+    console.log("Data Set for Demo Graph", data);    
 }
 
 $(document).ready(function () {
@@ -76,9 +82,10 @@ $(document).ready(function () {
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
 
-        var admissionData = GetAdmmisionData(dataObject);
-        DrawBarGraph(admissionData);
+        // var admissionData = GetAdmmisionData(dataObject);
+        // DrawBarGraph(admissionData);
 
-        // GetDemoData(dataObject);
+        var demoData = GetDemoData(dataObject);
+        DrawDemoGraph(demoData);
     });
 })
