@@ -251,7 +251,7 @@ $(document).ready(function() {
     
                 // These labels appear in the legend and in the tooltips when hovering different arcs
                 labels: [
-                    'Whilte',
+                    'White',
                     'Black',
                     'Asian',
                     'Hispanic',
@@ -265,42 +265,7 @@ $(document).ready(function() {
                 type: 'pie',
             });
     
-            // bar part, i'll let the team decide on which one to use
-            // Bar chart
-            /*
-                var cht = document.getElementById("barChart");
-                //data fot bar chart
-                data = {
-                    datasets: [{
-                        backgroundColor: [
-                            //set colors for chart
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        //data for bar
-                        data: [0.5, 0.6, 0.2, 0.1, 1.1, 0.8]
-                    }],
-    
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        'Whilte',
-                        'Black',
-                        'Asian',
-                        'pacific',
-                        'native American',
-                        'others'
-                    ]
-                };
-                new Chart(ctx, {
-                    data: data,
-                    type: 'bar',
-                });
-                
-            */
+        
         });// end of Ajax call
             
     }; //displayPieChart
