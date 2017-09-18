@@ -1,7 +1,7 @@
 /* N A V B A R  */
-
-#limit {
-    width: 100px;
+.navbar {
+    padding-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .navbar-text {
@@ -9,8 +9,12 @@
     padding-left: 5%;
 }
 
-/* T O   T O P */
+/* S E A R C H   B O X */
+.form-control {
+    margin: 10px 0;
+}
 
+/* T O   T O P */
 .toTop {
     position: fixed;
     bottom: 0;
@@ -18,7 +22,6 @@
 }
 
 /* P A G E  B O D Y  */
-
 .rec-container {
     max-width: 20%;
     float: left;
@@ -34,7 +37,6 @@
 }  
 
 /* L O A D E D   C O N T E N T */
-
 .gif-btn {
     font-size: 20px;
     width: 100%;
@@ -59,7 +61,6 @@
 }
 
 /* F O O T E R  */
-
 html, body{
     height: 100%;
     margin: 0;
