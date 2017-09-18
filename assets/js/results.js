@@ -82,8 +82,8 @@ $(document).ready(function () {
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
 
-        // var admissionData = GetAdmmisionData(dataObject);
-        // DrawBarGraph(admissionData);
+        var admissionData = GetAdmmisionData(dataObject);
+        DrawBarGraph(admissionData);
 
         var demoData = GetDemoData(dataObject);
         DrawDemoGraph(demoData);
