@@ -121,14 +121,7 @@ $(document).ready(function() {
             "2014.student.demographics.race_ethnicity.black," +
             "2014.student.demographics.race_ethnicity.hispanic," +
             "2014.student.demographics.race_ethnicity.asian," +
-            "2014.student.demographics.race_ethnicity.aian," +
-            "2014.student.demographics.race_ethnicity.nhpi," +
-            "2014.student.demographics.race_ethnicity.two_or_more," +
-            "2014.student.demographics.race_ethnicity.non_resident_alien," +
-            "2014.student.demographics.race_ethnicity.unknown," +
-            "2014.student.demographics.race_ethnicity.white_non_hispanic," +
-            "2014.student.demographics.race_ethnicity.black_non_hispanic," +
-            "2014.student.demographics.race_ethnicity.asian_pacific_islander&" +
+            "2014.student.demographics.race_ethnicity.non_resident_alien," +"&" +
             "sort=2014.completion.rate_suppressed.overall:desc&" +
             "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&" +
             //"school.name=university+texas+austin"
