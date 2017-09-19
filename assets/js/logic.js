@@ -447,6 +447,7 @@ function DrawDemoGraph(data) {
 
 
 function makeGraphsForSchoolID(schoolID) {
+    
     var queryURL = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + schoolID + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A"
 
     $.ajax({
