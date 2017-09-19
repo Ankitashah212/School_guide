@@ -95,7 +95,6 @@ function DrawBarGraph(data) {
                 return i * 25;
     });
 
-
 }
 
 function DrawDemoGraph(data) {
