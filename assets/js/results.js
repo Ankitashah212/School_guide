@@ -1,9 +1,19 @@
 // Variables for drawing data
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-var width = 500;
-var height = 360;
+var fullWidth = 450;
+var fullHeight = 360;
+var margin = {
+    top: 15,
+    right: 15,
+    left: 50,
+    bottom: 50
+  };
+
+var width = fullWidth - margin.left - margin.right;
+var height = fullHeight - margin.top - margin.bottom;
 var radius = Math.min(width, height) / 2;
+
 
 function GetAdmissionData(object) {
     // Check the object passed
@@ -50,11 +60,14 @@ function GetDemoData(object) {
 
 function DrawBarGraph(data) {
 
+    console.log("Data Set for Addmissions Graph", data);
     // We make an empty svg to add our elements 
     var svg = d3.select('#bar-graph')
         .append('svg')
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", fullWidth)
+        .attr("height", fullHeight)
+        .append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     var xScale = d3.scaleTime()
         .domain([new Date(1996, 0, 1), (new Date(2014, 0, 1))])
@@ -64,13 +77,14 @@ function DrawBarGraph(data) {
         .domain([0, 100])
         .range([height, 0]);
 
-    var xAxis = d3.axisBottom()
-        .scale(xScale);
+    var xAxis = d3.axisBottom(xScale)
+        .tickSize(5);
         
     var yAxis = d3.axisLeft()
         .scale(yScale);
 
     svg.append('g')
+        .attr("transform", "translate(0, "+ (height) +")")
         .classed('axis_x', true)
         .call(xAxis);
     
@@ -86,16 +100,14 @@ function DrawBarGraph(data) {
             .attr("fill", "#d1c9b8")
             .attr("width", 15)
             .attr("y", function (d) {
-                return height - (d * 100);
+                return height - (d * height);
             })
             .attr("height", function (d) {
-                return d * 100;
+                return d * height;
             })
             .attr("x", function(d, i) {
-                return i * 25;
+                return i * 21.38;
     });
-
-
 }
 
 function DrawDemoGraph(data) {
@@ -104,12 +116,12 @@ function DrawDemoGraph(data) {
     // Get basic svg 
     var svg = d3.select('#demo-graph')
     .append('svg')
-    .attr('width', width)
-    .attr('height', height)
+    .attr('width', fullWidth)
+    .attr('height', fullHeight)
 
     .append('g')
-    .attr('transform', 'translate(' + (width / 2) +
-      ',' + (height / 2) + ')');
+        .attr('transform', 'translate(' + (fullWidth / 2) +
+        ',' + (fullHeight / 2) + ')');
 
     // Add element to center the pie chart
     svg.append('g')
@@ -156,3 +168,7 @@ function DisplayGraphs(id) {
         DrawDemoGraph(demoData);
     });
 }
+
+// $(document).ready(function() {
+//     DisplayGraphs(164924);    
+// })
