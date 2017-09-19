@@ -72,13 +72,14 @@ $(document).ready(function() {
             console.log("fetchData() Called")
             event.preventDefault();
             
+            //getting value from index.html to filter results 
             var schoolName = $("#school").val().trim();
             var satScore = $("#sat").val().trim();
             var tuition = $("#tuition").val().trim();
             var degree = $("#degree").val().trim();
             degree = degree.toLowerCase();
 
-
+            //replacing spaces with + to make it query ready
             schoolName = schoolName.replace(' ', '+');
             
             console.log("inputs :", schoolName, satScore, tuition, degree);
@@ -86,6 +87,7 @@ $(document).ready(function() {
             //Clear Field
             $('#school').val('');
             
+            //Query to fetch filtered data
             var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
                 "school.degrees_awarded.predominant=2,3&" +
                 "_fields=id," +
