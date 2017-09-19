@@ -1,9 +1,14 @@
 var schoolID = "164924"
 var queryURL = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + schoolID + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A"
 
+// Variables for drawing data
+var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-function DrawBarGraph(object) {
+var width = 360;
+var height = 360;
+var radius = Math.min(width, height) / 2;
 
+function GetAdmissionData(object) {
     // Check the object passed
     console.log(object);
 
@@ -15,7 +20,6 @@ function DrawBarGraph(object) {
     for (var property in object) {
         // if that property(year) exists
         if (object.hasOwnProperty(property)) {
-             console.log(property);
             // And the subproperty is defined
             if(typeof object[property].admissions !== "undefined")
                 // Pass that data to our empty array
@@ -23,11 +27,37 @@ function DrawBarGraph(object) {
         }
     }
 
+    return data;
+}
+
+function GetDemoData(object) {
+    var data = [];
+    // For each property (for our objects it corresponse to different ethnicities), 
+    for (var property in object[2014].student.demographics.race_ethnicity) {
+        // console.log("Property", property)
+        // if that property(ethnicity) exists && and it's one of the types we are lookign for
+        if (property == "aian" || 
+            property == "asian" || 
+            property == "black" || 
+            property == "hispanic" || 
+            property == "non_resident_alien" || 
+            property == "two_or_more" ||
+            property == "white")
+        {
+            var tempObject = {label: property, count: object[2014].student.demographics.race_ethnicity[property]};
+            data.push(tempObject);
+        }
+    }
+    return data;
+}
+
+function DrawBarGraph(data) {
+
     // We make an empty svg to add our elements 
     var svg = d3.select('#bar-graph')
         .append('svg')
-        .attr("width", 500)
-        .attr("height", 200);
+        .attr("width", width)
+        .attr("height", height);
 
     // Make a bar for each element in the data array by using d3 
     svg.selectAll('rect')
@@ -37,13 +67,53 @@ function DrawBarGraph(object) {
             .attr("fill", "#d1c9b8")
             .attr("width", 15)
             .attr("y", function (d) {
-                return 200 - (d * 100);
+                return height - (d * 100);
             })
             .attr("height", function (d) {
                 return d * 100;
             })
             .attr("x", function(d, i) {
                 return i * 25;
+    });
+
+
+}
+
+function DrawDemoGraph(data) {
+    console.log("Data Set for Demo Graph", data);
+
+    // Get basic svg 
+    var svg = d3.select('#demo-graph')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+
+    .append('g')
+    .attr('transform', 'translate(' + (width / 2) +
+      ',' + (height / 2) + ')');
+
+    // Add element to center the pie chart
+    svg.append('g')
+        .attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
+
+    // Add the arc using d3.arc()
+    var arc = d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius);
+
+    // Define the slices
+    var pie = d3.pie()
+        .value(function(d) {return d.count; })
+        .sort(null);
+
+    // Draw the lines using path by passing our earlier variables
+    var path = svg.selectAll('path')
+        .data(pie(data))
+        .enter()
+        .append('path')
+            .attr('d', arc)
+            .attr('fill', function(d, i){
+                return color (d.data.label)
             });
 }
 
@@ -54,9 +124,13 @@ $(document).ready(function () {
         method: 'GET',
     }).done(function (response) {
         console.log("Displaying Result");
-        var dataSet = response.results["0"];
-        console.log("Base School Object", dataSet);
+        var dataObject = response.results["0"];
+        console.log("Base School Object", dataObject);
 
-        DrawBarGraph(dataSet);
+        var admissionData = GetAdmissionData(dataObject);
+        DrawBarGraph(admissionData);
+
+        var demoData = GetDemoData(dataObject);
+        DrawDemoGraph(demoData);
     });
 })
