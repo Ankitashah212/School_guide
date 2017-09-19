@@ -1,7 +1,14 @@
 var schoolID = "164924"
 var queryURL = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + schoolID + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A"
 
-function GetAdmmisionData(object) {
+// Variables for drawing data
+var color = d3.scaleOrdinal(d3.schemeCategory20b);
+
+var width = 360;
+var height = 360;
+var radius = Math.min(width, height) / 2;
+
+function GetAdmissionData(object) {
     // Check the object passed
     console.log(object);
 
@@ -34,7 +41,8 @@ function GetDemoData(object) {
             property == "black" || 
             property == "hispanic" || 
             property == "non_resident_alien" || 
-            property == "two_or_more") 
+            property == "two_or_more" ||
+            property == "white")
         {
             var tempObject = {label: property, count: object[2014].student.demographics.race_ethnicity[property]};
             data.push(tempObject);
@@ -44,11 +52,12 @@ function GetDemoData(object) {
 }
 
 function DrawBarGraph(data) {
+
     // We make an empty svg to add our elements 
     var svg = d3.select('#bar-graph')
         .append('svg')
-        .attr("width", 500)
-        .attr("height", 200);
+        .attr("width", width)
+        .attr("height", height);
 
     // Make a bar for each element in the data array by using d3 
     svg.selectAll('rect')
@@ -58,7 +67,7 @@ function DrawBarGraph(data) {
             .attr("fill", "#d1c9b8")
             .attr("width", 15)
             .attr("y", function (d) {
-                return 200 - (d * 100);
+                return height - (d * 100);
             })
             .attr("height", function (d) {
                 return d * 100;
@@ -66,10 +75,46 @@ function DrawBarGraph(data) {
             .attr("x", function(d, i) {
                 return i * 25;
     });
+
+
 }
 
 function DrawDemoGraph(data) {
-    console.log("Data Set for Demo Graph", data);    
+    console.log("Data Set for Demo Graph", data);
+
+    // Get basic svg 
+    var svg = d3.select('#demo-graph')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+
+    .append('g')
+    .attr('transform', 'translate(' + (width / 2) +
+      ',' + (height / 2) + ')');
+
+    // Add element to center the pie chart
+    svg.append('g')
+        .attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
+
+    // Add the arc using d3.arc()
+    var arc = d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius);
+
+    // Define the slices
+    var pie = d3.pie()
+        .value(function(d) {return d.count; })
+        .sort(null);
+
+    // Draw the lines using path by passing our earlier variables
+    var path = svg.selectAll('path')
+        .data(pie(data))
+        .enter()
+        .append('path')
+            .attr('d', arc)
+            .attr('fill', function(d, i){
+                return color (d.data.label)
+            });
 }
 
 $(document).ready(function () {
@@ -82,7 +127,7 @@ $(document).ready(function () {
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
 
-        var admissionData = GetAdmmisionData(dataObject);
+        var admissionData = GetAdmissionData(dataObject);
         DrawBarGraph(admissionData);
 
         var demoData = GetDemoData(dataObject);
