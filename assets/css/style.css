@@ -28,6 +28,14 @@
     margin: 10px 0;
 }
 
+#state-label{
+    float: left;
+}
+
+#state {
+    
+}
+
 /* T O   T O P */
 .toTop {
     position: fixed;
@@ -54,6 +62,13 @@
 
 /* L O A D E D   C O N T E N T */
 
+/* R E S U L T S */
+#demo-graph {
+    margin: 15px 20px;
+}
+.nav-link {
+    color: #7e8994; 
+}
 
 /* F O O T E R  */
 html, body{
