@@ -1,6 +1,3 @@
-var schoolID = "164924"
-var queryURL = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + schoolID + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A"
-
 // Variables for drawing data
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
@@ -139,8 +136,11 @@ function DrawDemoGraph(data) {
             });
 }
 
-$(document).ready(function () {
+function DisplayGraphs(id) {
 
+    var schoolID = id;
+    var queryURL = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + schoolID + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A"
+    
     $.ajax({
         url: queryURL,
         method: 'GET',
@@ -155,4 +155,4 @@ $(document).ready(function () {
         var demoData = GetDemoData(dataObject);
         DrawDemoGraph(demoData);
     });
-})
+}
