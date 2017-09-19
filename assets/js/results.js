@@ -4,7 +4,7 @@ var queryURL = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + schoo
 // Variables for drawing data
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-var width = 360;
+var width = 500;
 var height = 360;
 var radius = Math.min(width, height) / 2;
 
@@ -59,21 +59,27 @@ function DrawBarGraph(data) {
         .attr("width", width)
         .attr("height", height);
 
-    // var xAxis = d3.svg.axis()
-    //     .scale(x)
-    //     .orient("bottom");
+    var xScale = d3.scaleTime()
+        .domain([new Date(1996, 0, 1), (new Date(2014, 0, 1))])
+        .range([0, width]);   
 
-    // var yAxis = d3.svg.axis()
-    //     .scale(y)
-    //     .orient("left");
+    var yScale = d3.scaleLinear()
+        .domain([0, 100])
+        .range([height, 0]);
 
-    // svg.append('g')
-    //     .attr('class', 'axis_x')
-    //     .call(xAxis);
+    var xAxis = d3.axisBottom()
+        .scale(xScale);
+        
+    var yAxis = d3.axisLeft()
+        .scale(yScale);
+
+    svg.append('g')
+        .classed('axis_x', true)
+        .call(xAxis);
     
-    // svg.append('g')
-    //     .attr('class', 'axis_y')
-    //     .call(yAxis);
+    svg.append('g')
+        .classed('axis_y', true)
+        .call(yAxis);
 
     // Make a bar for each element in the data array by using d3 
     svg.selectAll('rect')
