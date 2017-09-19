@@ -132,11 +132,18 @@ $(document).ready(function () {
 
     //Input Form Submit Button calls fetchData() Function
     jQuery("#form-button, #search-button").on("click", fetchData);
-    //On enter in search button calls fetchData() Function
-    $("#search-input").on("keyup", function (e) {
+
+    //On keyup enter in search calls fetchData() Function
+    $("#search-input").on("keyup", (e)=>{
         //If "enter" pressed, call function
         if (e.which == 13) {
             fetchData();
         }
+    })
+
+    // On click of go-back-button returns to table div
+    $("#go-back-button").on('click', ()=> {
+        $(".chart-body").css("display", "none");
+        $(".main").show();        
     })
 }) ///$(document).ready(function() {
