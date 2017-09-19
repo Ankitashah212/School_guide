@@ -171,7 +171,7 @@ $(document).ready(function () {
 
                 $(".main").css("display", "none");
                 $(".chart-body").show();
-                makeGraphsForSchoolID($el.id);
+                makeDetailTabs($el.id);
             }
         });
 
@@ -446,8 +446,8 @@ function DrawDemoGraph(data) {
 }
 
 
-function makeGraphsForSchoolID(schoolID) {
-    
+function makeDetailTabs(schoolID) {
+
     var queryURL = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + schoolID + "&api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A"
 
     $.ajax({
@@ -457,12 +457,16 @@ function makeGraphsForSchoolID(schoolID) {
         console.log("Displaying Result");
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
+        console.log("lat and long");
+        console.log(dataObject.location.lat);
+        console.log(dataObject.location.lon);
 
         var admissionData = GetAdmissionData(dataObject);
         DrawBarGraph(admissionData);
 
         var demoData = GetDemoData(dataObject);
         DrawDemoGraph(demoData);
+
     }); // end of ajax call
 }
 
