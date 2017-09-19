@@ -39,9 +39,6 @@ function fetchData(event) {
 
     console.log("inputs :", schoolName, satScore, tuition, degree);
 
-    //Clear Field
-    $('#school').val('');
-
     //Query to fetch filtered data
     var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
         "school.degrees_awarded.predominant=2,3&" +
