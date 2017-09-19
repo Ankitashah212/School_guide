@@ -8,6 +8,8 @@ function fetchData(event) {
     //Clear Table
     //$('#clienti').bootstrapTable('removeAll');
 
+    $(".main").show();
+    $(".chart-body").css("display", "none");
     console.log("fetchData() Called")
     event.preventDefault();
 
@@ -113,7 +115,7 @@ function displayData(result) {
         if (value != "type") {
             // alert($el.id+"-"+$el.name+"-"+$el.type);
             // alert("Selected Row's ID: '" + $el.id + "'")
-
+          
             $(".main").css("display", "none");
             $(".chart-body").show();
             DisplayGraphs($el.id);
@@ -129,6 +131,6 @@ $(document).ready(function () {
     //*******************************************/
 
     //Input Form Submit Button calls fetchData() Function
-    jQuery("form").submit(fetchData);
+    jQuery("#form-button").on("click", fetchData);
 
 }) ///$(document).ready(function() {
