@@ -28,6 +28,14 @@
     margin: 10px 0;
 }
 
+#state-label{
+    float: left;
+}
+
+#state {
+    
+}
+
 /* T O   T O P */
 .toTop {
     position: fixed;
