@@ -62,16 +62,21 @@
 
 /* R E S U L T S */
 #demo-graph {
-    margin: 15px 20px;
+
 }
+
 .nav-link {
     color: #7e8994; 
 }
 
 .tab-pane {
-    height: 360px;
+    min-height: 360px;
+    max-height: 360px;
 }
 
+#go-back-button {
+    margin-left: 25px;
+}
 /* F O O T E R  */
 html, body{
     height: 100%;
