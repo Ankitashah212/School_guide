@@ -73,9 +73,15 @@ $(document).ready(function() {
             event.preventDefault();
             
             var schoolName = $("#school").val().trim();
+            var satScore = $("#sat").val().trim();
+            var tuition = $("#tuition").val().trim();
+            var degree = $("#degree").val().trim();
+            degree = degree.toLowerCase();
+
+
             schoolName = schoolName.replace(' ', '+');
             
-            console.log("schoolname", schoolName);
+            console.log("inputs :", schoolName, satScore, tuition, degree);
     
             //Clear Field
             $('#school').val('');
@@ -84,10 +90,12 @@ $(document).ready(function() {
                 "school.degrees_awarded.predominant=2,3&" +
                 "_fields=id," +
                 "school.name," +
-                "2013.student.size," +
-                "2013.admissions.sat_scores.average.overall&" +
+                "2014.student.size," +
+                "2014.admissions.sat_scores.average.overall&" +
                 "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A&"+
-                "school.name=" + schoolName;
+                "school.name=" + schoolName + "&2014.admissions.sat_scores.average.overall__range=700.."
+                +satScore +"&2014.cost.avg_net_price.overall__range=2000.." + tuition + "&2014.academics.program.bachelors."
+                + degree + "=1";     
     
             $.ajax({
                 url: query,
@@ -108,15 +116,15 @@ $(document).ready(function() {
             var mydata2 = [];
             for (i=0; i < result.results.length; i++) {
                 var name =  result.results[i]["school.name"]
-                var sat = result.results[i]["2013.admissions.sat_scores.average.overall"];
-                var studentSize = result.results[i]["2013.student.size"]
+                var sat = result.results[i]["2014.admissions.sat_scores.average.overall"];
+                var studentSize = result.results[i]["2014.student.size"]
                 var id = result.results[i]["id"]
                 var tmp = [
                     {
                         "school.name" : "" + name,
                         "id" : "" + id,
-                        "2013.student.size" : "" + studentSize,
-                        "2013.admissions.sat_scores.average.overall":"" + sat
+                        "2014.student.size" : "" + studentSize,
+                        "2014.admissions.sat_scores.average.overall":"" + sat
                     }
                 ];
                 mydata2.push.apply(mydata2, tmp);
