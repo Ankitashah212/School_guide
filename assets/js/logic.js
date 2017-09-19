@@ -3,7 +3,7 @@
 //**************  FUNCTIONS  ***************/
 //******************************************/
 
-function fetchData(event) {
+function fetchData() {
 
     //Clear Table
     //$('#clienti').bootstrapTable('removeAll');
@@ -132,5 +132,11 @@ $(document).ready(function () {
 
     //Input Form Submit Button calls fetchData() Function
     jQuery("#form-button, #search-button").on("click", fetchData);
-
+    //On enter in search button calls fetchData() Function
+    $("#search-input").on("keyup", function (e) {
+        //If "enter" pressed, call function
+        if (e.which == 13) {
+            fetchData();
+        }
+    })
 }) ///$(document).ready(function() {
