@@ -1,11 +1,11 @@
 // Variables for drawing data
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-var fullWidth = 450;
+var fullWidth = 600;
 var fullHeight = 360;
 var margin = {
     top: 15,
-    right: 15,
+    right: 150,
     left: 50,
     bottom: 50
   };
@@ -13,7 +13,9 @@ var margin = {
 var width = fullWidth - margin.left - margin.right;
 var height = fullHeight - margin.top - margin.bottom;
 var radius = Math.min(width, height) / 2;
-
+var donutWidth = 75;
+var legendRectSize = 18;
+var legendSpacing = 4;
 
 function GetAdmissionData(object) {
     // Check the object passed
@@ -130,7 +132,7 @@ function DrawDemoGraph(data) {
 
     // Add the arc using d3.arc()
     var arc = d3.arc()
-        .innerRadius(0)
+        .innerRadius(radius - donutWidth)
         .outerRadius(radius);
 
     // Define the slices
@@ -147,6 +149,31 @@ function DrawDemoGraph(data) {
             .attr('fill', function(d, i){
                 return color (d.data.label)
             });
+    
+    var legend = svg.selectAll('.legend')
+    .data(color.domain())
+    .enter()
+    .append('g')
+        .classed('legend', true)
+        .attr('transform', function(d, i) {
+            var height = legendRectSize + legendSpacing;
+            var offset =  height * color.domain().length / 2;
+            var horz = width / 2;
+            var vert = i * height - offset;
+            return 'translate(' + horz + ',' + vert + ')';
+    });
+    
+    legend.append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill', color)
+        .style('stroke', color);
+    
+    legend.append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+        .text(function(d) { return d; });
+  
 }
 
 function DisplayGraphs(id) {
@@ -172,6 +199,6 @@ function DisplayGraphs(id) {
     });
 }
 
-// $(document).ready(function() {
-//     DisplayGraphs(164924);    
-// })
+$(document).ready(function() {
+    DisplayGraphs(164924);    
+})
