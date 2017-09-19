@@ -11,6 +11,7 @@
 .chart-body{
     display: none;
 }
+
 /* N A V B A R  */
 .navbar {
     padding-bottom: 0;
@@ -65,13 +66,6 @@
     margin-top: 5px;
 }
 
-/* T O   T O P */
-.toTop {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-}
-
 /* P A G E  B O D Y  */
 .page-body {
     max-width: 60%;
@@ -82,8 +76,6 @@
 .input-box {
     padding: 0;
 }  
-
-/* L O A D E D   C O N T E N T */
 
 /* R E S U L T S */
 #demo-graph {
@@ -102,6 +94,15 @@
 #go-back-button {
     margin-left: 25px;
 }
+
+
+/* T O   T O P */
+.toTop {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
 /* F O O T E R  */
 html, body{
     height: 100%;
