@@ -16,17 +16,22 @@ function fetchData(event) {
     var satScore = $("#sat").val().trim();
     var tuition = $("#tuition").val().trim();
     var degree = $("#degree").val().trim();
+    var state = $("#state").val().trim();
     var flag = true;
     degree = degree.toLowerCase();
 
-    if (degree == "select degree") {
+    if (degree == "blank") {
         degree = "";
     }
-    if (schoolName.length < 1 && satScore.length < 1 && tuition.length < 1 && degree.length < 1) {
+    if (state == "Blank") {
+        state = "";
+    }
+
+    /*if (schoolName.length < 1 && satScore.length < 1 && tuition.length < 1 && degree.length < 1 && state.length <1) {
         console.log("no input data");
         flag = false;
     }
-
+*/
     //replacing spaces with + to make it query ready
     schoolName = schoolName.replace(' ', '+');
 
@@ -56,11 +61,13 @@ function fetchData(event) {
         query = query + "&2014.cost.avg_net_price.overall__range=2000.." + tuition;
     }
     if (degree.length > 1) {
-        query = query + "&2014.academics.program.bachelors."
-            + degree + "=1";
+        query = query + "&2014.academics.program.bachelors." + degree + "=1";
+    }
+    if (state.length > 1) {
+        query = query + "&school.state=" + state;
     }
 
-    //   console.log("Query " + query);
+       console.log("Query " + query);
     $.ajax({
         url: query,
         method: 'GET',
