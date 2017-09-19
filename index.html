@@ -55,13 +55,19 @@
         <div class="sticky-top">
 
             <nav class="navbar navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">
-                    <img src="assets/images/white-icon-sized.png" alt="Brand Icon">
-                    Find Schools
-                </a>
-                <span class="navbar-text">
-                    Get that education!
-                </span>
+                <div class="nav-content">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/white-icon-sized.png" alt="Brand Icon">
+                        Find Schools
+                    </a>
+                    <div class="search-box">
+                        <input id="search-input" class="form-control mr-sm-2" type="text" placeholder="Search">  
+                        <button type="submit" id="search-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Enter</button>                    
+                    </div>
+                    <span class="navbar-text">
+                        Get that education!
+                    </span>
+                </div>
             </nav>
 
             <!-- F L O A T I N G   S E A R C H   B O X -->
@@ -69,9 +75,7 @@
 
                 <div class="form_contact" method="post">
                     <form action="/action_page.php">
-                        <!-- S C H O O L   N A M E -->
-                        <input id="school" class="form-control mr-sm-2" type="text" placeholder="School Name">
-
+                        <label class="form-title">Search Filters</label>
                         <!-- T U I T I O N  -->
                         <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
 

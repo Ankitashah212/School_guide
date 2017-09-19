@@ -17,13 +17,37 @@
     margin-bottom: 10px;
 }
 
+.nav-content {
+    margin: 0 20%;
+    width: 100%;
+}
+
+.navbar-brand {
+    float: left;
+}
+
 .navbar-text {
-    width: 40%;
-    margin-right: 20%;
+    width: 150px;
     text-align: right;
+    padding-top: 1rem;
+    float: right;
 }
 
 /* S E A R C H   B O X */
+.search-box {
+    display: flex;
+    align-items: center;
+    float: left;
+    margin-left: 10%;
+    width: 40%;
+}
+
+/* F I L T E R   B O X */
+.form-title {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
 .form-control {
     margin: 10px 0;
 }
