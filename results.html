@@ -2,17 +2,34 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="http://www.harvestmooncandle.com/securedownload.png" />
+    <title>University Search</title>
 
-    <!-- Libraries -->
+    <!-- Bootstrap DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"
+    />
+    <!-- Bootstrap Tables CSS -->
+    <link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css">
+    <!-- DataTables JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+
+    <!-- d3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css' />
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <!-- jQuery & jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Popper / Bootstrap.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
 
+    <!-- Logic.js File -->
+    <script src="assets/js/logic.js"></script>
     <!-- Scripts -->
     <script src="assets/js/results.js"></script>
     <!-- CSS Reset -->
@@ -111,13 +128,14 @@
         </div>
 
         <!-- C O N T E N T  B O X  -->
-        <div class="container page-body">
+        <div class="container page-body chart">
             <div class="row">
                 <div class="col content">
                     <div id="charts">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="bar" aria-expanded="true" data-ytta-id="-">Admissions</a>
+                                <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="bar" aria-expanded="true"
+                                    data-ytta-id="-">Admissions</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="demo-tab" data-toggle="tab" href="#demo-graph" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Demographics</a>

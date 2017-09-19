@@ -1,7 +1,16 @@
 /* A D D E D   C H A N G E S  */
 
+/* class to toggle visibility of main content */
+.school-row{
 
+}
+.main{
 
+}
+
+.chart-body{
+    display: none;
+}
 /* N A V B A R  */
 .navbar {
     padding-bottom: 0;
@@ -36,6 +45,7 @@
 .page-body {
     max-width: 60%;
     margin-right: 20%;
+    margin-top: 20px;
 }
 
 .input-box {
@@ -44,6 +54,13 @@
 
 /* L O A D E D   C O N T E N T */
 
+/* R E S U L T S */
+#demo-graph {
+    margin: 15px 20px;
+}
+.nav-link {
+    color: #7e8994; 
+}
 
 /* F O O T E R  */
 html, body{
