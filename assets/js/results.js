@@ -62,6 +62,7 @@ function DrawBarGraph(data) {
 
     console.log("Data Set for Addmissions Graph", data);
     // We make an empty svg to add our elements 
+    $("#bar-graph").empty();
     var svg = d3.select('#bar-graph')
         .append('svg')
         .attr("width", fullWidth)
@@ -115,6 +116,7 @@ function DrawDemoGraph(data) {
     console.log("Data Set for Demo Graph", data);
 
     // Get basic svg 
+    $("#demo-graph").empty();
     var svg = d3.select('#demo-graph')
     .append('svg')
     .attr('width', fullWidth)
