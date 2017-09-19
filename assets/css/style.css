@@ -68,6 +68,10 @@
     color: #7e8994; 
 }
 
+.tab-pane {
+    height: 360px;
+}
+
 /* F O O T E R  */
 html, body{
     height: 100%;
