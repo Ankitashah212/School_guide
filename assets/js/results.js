@@ -59,6 +59,22 @@ function DrawBarGraph(data) {
         .attr("width", width)
         .attr("height", height);
 
+    // var xAxis = d3.svg.axis()
+    //     .scale(x)
+    //     .orient("bottom");
+
+    // var yAxis = d3.svg.axis()
+    //     .scale(y)
+    //     .orient("left");
+
+    // svg.append('g')
+    //     .attr('class', 'axis_x')
+    //     .call(xAxis);
+    
+    // svg.append('g')
+    //     .attr('class', 'axis_y')
+    //     .call(yAxis);
+
     // Make a bar for each element in the data array by using d3 
     svg.selectAll('rect')
         .data(data)
