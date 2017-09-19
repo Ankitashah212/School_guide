@@ -73,121 +73,128 @@
             <!-- F L O A T I N G   S E A R C H   B O X -->
             <div class="container rec-container">
 
-                <div class="form_contact" method="post">
-                    <form action="/action_page.php">
-                        <label class="form-title">Search Filters</label>
-                        <!-- T U I T I O N  -->
-                        <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
-
-                        <!-- S A T   S C O R E S  -->
-                        <input id="sat" class="form-control mr-sm-2" type="number" placeholder="Maximum SAT">
-
-                        <!-- S T A T E -->
-                        <div class="form-group">
-                            <label class="form-label" for="state">Select State</label>
-                            <select class="form-control" id="state">
-                                <option>Blank</option>  
-                                <option>AL</option>
-                                <option>AK</option>
-                                <option>AZ</option>
-                                <option>AR</option>
-                                <option>CA</option>
-                                <option>CO</option>
-                                <option>CT</option>
-                                <option>DE</option>
-                                <option>FL</option>
-                                <option>GA</option>
-                                <option>HI</option>
-                                <option>ID</option>
-                                <option>IL</option>
-                                <option>IN</option>
-                                <option>IA</option> 
-                                <option>KS</option>
-                                <option>KY</option>
-                                <option>LA</option>
-                                <option>ME</option>
-                                <option>MD</option>
-                                <option>MA</option>
-                                <option>MI</option>
-                                <option>MN</option>
-                                <option>MS</option>
-                                <option>MO</option>
-                                <option>MT</option>
-                                <option>NE</option>
-                                <option>NV</option>
-                                <option>NH</option>
-                                <option>NJ</option>
-                                <option>NM</option>
-                                <option>NY</option>
-                                <option>NC</option>
-                                <option>ND</option>
-                                <option>OH</option>
-                                <option>OK</option>
-                                <option>OR</option>
-                                <option>PA</option>
-                                <option>RI</option>
-                                <option>SC</option>
-                                <option>SD</option>
-                                <option>TN</option>
-                                <option>TX</option>
-                                <option>UT</option>
-                                <option>VT</option>
-                                <option>VA</option>
-                                <option>WA</option>
-                                <option>WV</option>
-                                <option>WI</option>
-                                <option>WY</option>
-                            </select>
+                <div class="card bg-light mb-3">
+                    <h3 class="card-header">Search Filters</h3>
+                    <div class="card-body">
+                        <div class="form_contact" method="post">
+                            <form action="/action_page.php">
+                                <!-- T U I T I O N  -->
+                                <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
+        
+                                <!-- S A T   S C O R E S  -->
+                                <input id="sat" class="form-control mr-sm-2" type="number" placeholder="Maximum SAT">
+        
+                                <!-- S T A T E -->
+                                <div class="form-group">
+                                    <label class="form-label" for="state">Select State</label>
+                                    <select class="form-control" id="state">
+                                        <option>Blank</option>  
+                                        <option>AL</option>
+                                        <option>AK</option>
+                                        <option>AZ</option>
+                                        <option>AR</option>
+                                        <option>CA</option>
+                                        <option>CO</option>
+                                        <option>CT</option>
+                                        <option>DE</option>
+                                        <option>FL</option>
+                                        <option>GA</option>
+                                        <option>HI</option>
+                                        <option>ID</option>
+                                        <option>IL</option>
+                                        <option>IN</option>
+                                        <option>IA</option> 
+                                        <option>KS</option>
+                                        <option>KY</option>
+                                        <option>LA</option>
+                                        <option>ME</option>
+                                        <option>MD</option>
+                                        <option>MA</option>
+                                        <option>MI</option>
+                                        <option>MN</option>
+                                        <option>MS</option>
+                                        <option>MO</option>
+                                        <option>MT</option>
+                                        <option>NE</option>
+                                        <option>NV</option>
+                                        <option>NH</option>
+                                        <option>NJ</option>
+                                        <option>NM</option>
+                                        <option>NY</option>
+                                        <option>NC</option>
+                                        <option>ND</option>
+                                        <option>OH</option>
+                                        <option>OK</option>
+                                        <option>OR</option>
+                                        <option>PA</option>
+                                        <option>RI</option>
+                                        <option>SC</option>
+                                        <option>SD</option>
+                                        <option>TN</option>
+                                        <option>TX</option>
+                                        <option>UT</option>
+                                        <option>VT</option>
+                                        <option>VA</option>
+                                        <option>WA</option>
+                                        <option>WV</option>
+                                        <option>WI</option>
+                                        <option>WY</option>
+                                    </select>
+                                </div>
+        
+                                <!-- D E G R E E   B.A -->
+                                <div class="form-group">
+                                    <label class="form-label" for="degree">Select Degree</label>
+                                    <select class="form-control" id="degree">
+                                        <option>Blank</option>                                     
+                                        <option>Agriculture</option> 
+                                        <option>Architecture</option>
+                                        <option>Biological</option>         
+                                        <option>Business Marketing</option>
+                                        <option>Communication</option>      
+                                        <option>Communications Technology</option>
+                                        <option>Computer</option>
+                                        <option>Construction</option>
+                                        <option>Education</option>        
+                                        <option>Engineering</option>
+                                        <option>Engineering Technology</option>
+                                        <option>English</option>
+                                        <option>Ethnic Cultural Gender</option>
+                                        <option>Family Consumer Science</option>
+                                        <option>Health</option>     
+                                        <option>History</option>        
+                                        <option>Humanities</option>
+                                        <option>Language</option>
+                                        <option>Legal</option> 
+                                        <option>Library</option>
+                                        <option>Mathematics</option>
+                                        <option>Mechanic Repair Technology</option>
+                                        <option>Military</option>
+                                        <option>Multidiscipline</option>
+                                        <option>Parks Recreation Fitness</option>   
+                                        <option>Personal Culinary</option>
+                                        <option>Philosophy Religious</option>
+                                        <option>Physical Science</option>
+                                        <option>Precision Production</option>    
+                                        <option>Psychology</option>     
+                                        <option>Public Administration Social Service</option>
+                                        <option>Resources</option>
+                                        <option>Science Technology</optio>
+                                        <option>Security Law Enforcement</option>
+                                        <option>Social Science</option>
+                                        <option>Theology Religious Vocation</option>
+                                        <option>Transportation</option>
+                                        <option>Visual Performing</option>
+                                    </select>
+                                </div>
+        
+                                <button type="submit" id="form-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                            </form>
                         </div>
-
-                        <!-- D E G R E E   B.A -->
-                        <div class="form-group">
-                            <label class="form-label" for="degree">Select Degree</label>
-                            <select class="form-control" id="degree">
-                                <option>Blank</option>                                     
-                                <option>Agriculture</option> 
-                                <option>Architecture</option>
-                                <option>Biological</option>         
-                                <option>Business Marketing</option>
-                                <option>Communication</option>      
-                                <option>Communications Technology</option>
-                                <option>Computer</option>
-                                <option>Construction</option>
-                                <option>Education</option>        
-                                <option>Engineering</option>
-                                <option>Engineering Technology</option>
-                                <option>English</option>
-                                <option>Ethnic Cultural Gender</option>
-                                <option>Family Consumer Science</option>
-                                <option>Health</option>     
-                                <option>History</option>        
-                                <option>Humanities</option>
-                                <option>Language</option>
-                                <option>Legal</option> 
-                                <option>Library</option>
-                                <option>Mathematics</option>
-                                <option>Mechanic Repair Technology</option>
-                                <option>Military</option>
-                                <option>Multidiscipline</option>
-                                <option>Parks Recreation Fitness</option>   
-                                <option>Personal Culinary</option>
-                                <option>Philosophy Religious</option>
-                                <option>Physical Science</option>
-                                <option>Precision Production</option>    
-                                <option>Psychology</option>     
-                                <option>Public Administration Social Service</option>
-                                <option>Resources</option>
-                                <option>Science Technology</optio>
-                                <option>Security Law Enforcement</option>
-                                <option>Social Science</option>
-                                <option>Theology Religious Vocation</option>
-                                <option>Transportation</option>
-                                <option>Visual Performing</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" id="form-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </div>
                 </div>
+                
+                
             </div>
         </div>
 
@@ -253,6 +260,18 @@
         </div>
         <div class="push"></div>
     </div>
-</body>
 
+    <!-- F I X E D   F O O T E R -->
+    <div class="navbar navbar-default fixed-footer">
+        <div class="container center-footer">
+            <p class="navbar-text footer-content">Copyright:
+                    <a class="footer-content" href="https://github.com/Ankitashah212" target="_blank">A.S</a>
+                    <a class="footer-content" href="https://github.com/lpeteet" target="_blank">L.P</a>
+                    <a class="footer-content" href="https://github.com/MaddJhin" target="_blank">F.C</a>
+                    <a class="footer-content" href="https://github.com/lcanizzo" target="_blank">L.C</a>                    
+                &copy; 2017 
+            </p>
+        </div>
+    </div>
+</body>
 </html>
