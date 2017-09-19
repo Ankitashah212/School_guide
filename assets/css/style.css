@@ -10,7 +10,8 @@
 
 .navbar-text {
     width: 40%;
-    padding-left: 5%;
+    margin-right: 20%;
+    text-align: right;
 }
 
 /* S E A R C H   B O X */
@@ -33,7 +34,8 @@
 }
 
 .page-body {
-    max-width: 45%;
+    max-width: 60%;
+    margin-right: 20%;
 }
 
 .input-box {
