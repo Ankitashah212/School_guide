@@ -108,6 +108,7 @@ function DrawBarGraph(data) {
             .attr("x", function(d, i) {
                 return i * 21.38;
     });
+
 }
 
 function DrawDemoGraph(data) {
@@ -160,7 +161,9 @@ function DisplayGraphs(id) {
         console.log("Displaying Result");
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
-
+        console.log("lat and long");
+        console.log(dataObject.location.lat);
+        console.log(dataObject.location.lon);
         var admissionData = GetAdmissionData(dataObject);
         DrawBarGraph(admissionData);
 
