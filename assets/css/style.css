@@ -28,12 +28,10 @@
     margin: 10px 0;
 }
 
-#state-label{
+.form-label{
     float: left;
-}
-
-#state {
-    
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
 /* T O   T O P */
