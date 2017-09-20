@@ -9,14 +9,16 @@
     <title>University Search</title>
 
     <!-- Bootstrap DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"
+    />
     <!-- Bootstrap Tables CSS -->
     <link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css">
 
     <!-- jQuery & jQuery UI -->
     <!-- DataTables JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
@@ -35,7 +37,8 @@
     <!-- CSS Reset -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
 
     <!-- CSS  -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -43,6 +46,7 @@
     <!-- Linked JS -->
     <script src="assets/js/results.js"></script>
     <script src="assets/js/logic.js"></script>
+    <script src="assets/js/location.js"></script>
 
 </head>
 
@@ -61,8 +65,8 @@
                         Find Schools
                     </a>
                     <div class="search-box">
-                        <input id="search-input" class="form-control mr-sm-2" type="text" placeholder="Search">  
-                        <button type="submit" id="search-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Enter</button>                    
+                        <input id="search-input" class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button type="submit" id="search-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Enter</button>
                     </div>
                     <span class="navbar-text">
                         Get that education!
@@ -80,10 +84,10 @@
                             <form action="/action_page.php">
                                 <!-- T U I T I O N  -->
                                 <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
-        
+
                                 <!-- S A T   S C O R E S  -->
                                 <input id="sat" class="form-control mr-sm-2" type="number" placeholder="Maximum SAT">
-        
+
                                 <!-- S T A T E -->
                                 <div class="form-group">
                                     <label class="form-label" for="state">Select State</label>
@@ -141,7 +145,7 @@
                                         <option>WY</option>
                                     </select>
                                 </div>
-        
+
                                 <!-- D E G R E E   B.A -->
                                 <div class="form-group">
                                     <label class="form-label" for="degree">Select Degree</label>
@@ -187,14 +191,14 @@
                                         <option>Visual Performing</option>
                                     </select>
                                 </div>
-        
+
                                 <button type="submit" id="form-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
                     </div>
                 </div>
-                
-                
+
+
             </div>
         </div>
 
@@ -237,58 +241,62 @@
                 <div class="row">
                     <div class="col content">
                         <div id="charts">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="bar" aria-expanded="true"
-                                        data-ytta-id="-">Admissions</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="demo-tab" data-toggle="tab" href="#demo-graph" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Demographics</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="map-tab" data-toggle="tab" href="#googl-map" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Location</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade active show" id="bar-graph" role="tabpanel" aria-labelledby="bar-tab" aria-expanded="true">
-                                </div>
-                                <div class="tab-pane fade" id="demo-graph" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false">
-                                </div>
-                                <div class="tab-pane fade" id="googl-map" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false">
+
+                            <div id="googleMap" style="width:100%;height:400px;">
+                            </div>
+
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="bar" aria-expanded="true"
+                                            data-ytta-id="-">Admissions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="demo-tab" data-toggle="tab" href="#demo-graph" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Demographics</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="map-tab" data-toggle="tab" href="#googl-map" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Location</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade active show" id="bar-graph" role="tabpanel" aria-labelledby="bar-tab" aria-expanded="true">
+                                    </div>
+                                    <div class="tab-pane fade" id="demo-graph" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false">
+                                    </div>
+                                    <div class="tab-pane fade" id="google-map" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <button id="go-back-button" class="btn btn-outline-secondary my-2 my-sm-0">Go Back</button>
+                    </div>
                 </div>
-                <div class="row">
-                    <button id="go-back-button" class="btn btn-outline-secondary my-2 my-sm-0" >Go Back</button>                
+                <div class="results-loading">
+                    <img class="loading-icon" src="assets/images/time-loading.gif" alt="Loading Icon">
+                    <h6>Loading . . .</h6>
                 </div>
             </div>
-            <div class="results-loading">
-                <img class="loading-icon" src="assets/images/time-loading.gif" alt="Loading Icon">       
-                <h6>Loading . . .</h6>         
-            </div>            
+
+
+            <!-- R E T U R N   T O   T O P  -->
+            <div class="toTop">
+                <a href="#" class="toTop badge badge-info">Return to Top</a>
+            </div>
+            <div class="push"></div>
         </div>
 
-    
-        <!-- R E T U R N   T O   T O P  -->
-        <div class="toTop">
-            <a href="#" class="toTop badge badge-info">Return to Top</a>
-        </div>
-        <div class="push"></div>
-    </div>
-
-    <!-- F I X E D   F O O T E R -->
-    <div class="navbar navbar-default fixed-footer">
-        <div class="container center-footer">
-            <p class="navbar-text footer-content">Copyright:
+        <!-- F I X E D   F O O T E R -->
+        <div class="navbar navbar-default fixed-footer">
+            <div class="container center-footer">
+                <p class="navbar-text footer-content">Copyright:
                     <a class="footer-content" href="https://github.com/Ankitashah212" target="_blank">A.S</a>
                     <a class="footer-content" href="https://github.com/lpeteet" target="_blank">L.P</a>
                     <a class="footer-content" href="https://github.com/MaddJhin" target="_blank">F.C</a>
-                    <a class="footer-content" href="https://github.com/lcanizzo" target="_blank">L.C</a>                    
-                &copy; 2017 
-            </p>
+                    <a class="footer-content" href="https://github.com/lcanizzo" target="_blank">L.C</a> &copy; 2017
+                </p>
+            </div>
         </div>
-    </div>
 </body>
+
 </html>
