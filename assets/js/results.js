@@ -196,6 +196,10 @@ function DisplayGraphs(id) {
         console.log("Displaying Result");
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
+        //Display school name
+        let name = dataObject.school.name;
+        $('#school-name').html(name);
+
         console.log("lat and long");
         console.log(dataObject.location.lat);
         console.log(dataObject.location.lon);
