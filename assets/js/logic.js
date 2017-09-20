@@ -11,10 +11,21 @@ function hideLoader(){
 function showLoader(){
     $('.results-loading').show();    
 }
+
+//W E L C O M E   D I V
+function hideWelcome(){
+    $('.welcome').hide();
+}
+
+function showWelcome(){
+    $('.welcome').show();    
+}
+
 function fetchData() {
 
     //Clear Table
     //$('#clienti').bootstrapTable('removeAll');
+    showWelcome();
     showLoader();
     $(".main").show();
     $(".chart-body").css("display", "none");
@@ -122,6 +133,7 @@ function displayData(result) {
             // alert("Selected Row's ID: '" + $el.id + "'")
           
             $(".main").css("display", "none");
+            hideWelcome();            
             $(".chart-body").show();
             DisplayGraphs($el.id);
             setTimeout(hideLoader, 1000);
@@ -151,5 +163,6 @@ $(document).ready(function () {
         $(".chart-body").css("display", "none");
         $(".main").show();      
         showLoader();  
+        showWelcome();
     })
 }) ///$(document).ready(function() {
