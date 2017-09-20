@@ -58,7 +58,7 @@ function GetAidData(object) {
                     date: property,
                     pelRate: object[property].aid.pell_grant_rate,
                     fedRate: object[property].aid.federal_loan_rate,
-                    loanPercent: object[property].aid.students_with_any_loan
+                    loanRate: object[property].aid.students_with_any_loan
                 }
                 data.push(tempObject);
             }
@@ -216,7 +216,9 @@ function DrawDemoGraph(data) {
 
 function DrawAidGraph(data){
     console.log("Data Set for Aid Graph", data);
-    // We make an empty svg to add our elements 
+    // We make an empty svg to add our elements
+    
+    var legendData = ["Federal Loan Rate","Pell Grant Rate", "Students with Loans"];
     $("#aid-graph").empty();
     var svg = d3.select('#aid-graph')
         .append('svg')
@@ -226,7 +228,7 @@ function DrawAidGraph(data){
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     var xScale = d3.scaleLinear()
-        .domain(0, data.length)
+        .domain([0, data.length])
         .range([0, width]);
 
     var yScale = d3.scaleLinear()
@@ -236,18 +238,18 @@ function DrawAidGraph(data){
 
     var fedLine = d3.line()
         // assign the X function to plot our line as we wish
-        .x(function(d, i) { 
-            // verbose logging to show what's actually being done
-            console.log('Plotting X value for data point: ' + d.date + ' using index: ' + i + ' to be at: ' + xScale(d.date) + ' using our xScale.');
-            // return the X coordinate where we want to plot this datapoint
-            return i; 
-        })
-        .y(function(d) { 
-            // verbose logging to show what's actually being done
-            console.log('Plotting Y value for data point: ' + d.date + ' to be at: ' + yScale(d.fedRate) + " using our yScale.");
-            // return the Y coordinate where we want to plot this datapoint
-            return yScale(d.fedRate); 
-        })
+        .x(function(d, i) { return xScale(i); })
+        .y(function(d) { return yScale(d.fedRate); })
+
+    var pelLine = d3.line()
+        // assign the X function to plot our line as we wish
+        .x(function(d, i) { return xScale(i); })
+        .y(function(d) { return yScale(d.pelRate); })
+
+    var loanLine = d3.line()
+        // assign the X function to plot our line as we wish
+        .x(function(d, i) { return xScale(i); })
+        .y(function(d) { return yScale(d.loanRate); })
 
     var xAxis = d3.axisBottom(xScale)
         .ticks(data.length /2)
@@ -264,7 +266,56 @@ function DrawAidGraph(data){
         .call(yAxis);
 
     svg.append('path')
+        .classed('line', true)
+        .style('stroke', color(0))
+        .style('stroke-width', "2px")
+        .style('fill', "none")
         .attr("d", fedLine(data));
+    
+    svg.append('path')
+        .classed('line', true)
+        .style('stroke', color(1))
+        .style('stroke-width', "2px")
+        .style('fill', "none")
+        .attr("d", pelLine(data));
+
+    svg.append('path')
+        .classed('line', true)
+        .style('stroke', color(2))
+        .style('stroke-width', "2px")
+        .style('fill', "none")
+        .attr("d", loanLine(data));
+        // .append('text')
+        //     // .attr("transform", function(d) { return "translate(" + xScale(i) + "," + yScale(d.loanRate) + ")"; })
+        //     .text("Percent of Students with Loans")
+        
+    var legend = svg.selectAll('.legend')
+    .data(legendData)
+    .enter()
+    .append('g')
+        .classed('legend', true)
+        .attr('transform', function(d, i) {
+            var height = legendRectSize + legendSpacing;
+            var offset =  height - 50;
+            var horz = width;
+            var vert = i * height - offset;
+            return 'translate(' + horz + ',' + vert + ')';
+    });
+    
+    legend.append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill', function (d, i) {
+            return color(i);
+        })
+        .style('stroke', function (d, i) {
+            return color(i);
+        });
+    
+    legend.append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+        .text(function(d) { return d; });
 }
 
 function DrawGoogleMap(data) {
