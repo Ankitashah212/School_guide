@@ -8,10 +8,7 @@
 
 }
 
-.chart-body{
-    display: none;
-    position: relative;
-}
+
 
 /* N A V B A R  */
 .navbar {
@@ -94,12 +91,24 @@
     font-size: 19px;
 }
 
+.results-content {
+    visibility: hidden;
+}
+
 .loading-icon {
     margin: 5%;    
     margin-bottom: 0;
 }
 
 /* R E S U L T S */
+.chart-body{
+    display: none;
+    position: relative;
+    margin-right: 0;
+    float: left;
+    max-width: 55%;
+}
+
 #school-name {
     padding-left: 15px;
 }
@@ -117,6 +126,14 @@
     margin-left: 25px;
 }
 
+.map-card {
+    margin-top: 10px;
+    min-width: 20%;
+    float: right;
+    text-align: center;
+    visibility: hidden;
+    margin-right: 15px
+}
 
 /* T O   T O P */
 .toTop {
