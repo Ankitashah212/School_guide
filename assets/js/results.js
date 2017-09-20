@@ -56,9 +56,9 @@ function GetAidData(object) {
             {    // Pass that data to our empty array
                 var tempObject = {
                     date: property,
-                    pelRate: object[property].aid.pell_loan_rate,
+                    pelRate: object[property].aid.pell_grant_rate,
                     fedRate: object[property].aid.federal_loan_rate,
-                    loanPercent: object[property].students_with_any_loan
+                    loanPercent: object[property].aid.students_with_any_loan
                 }
                 data.push(tempObject);
             }
@@ -225,8 +225,8 @@ function DrawAidGraph(data){
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    var xScale = d3.scaleTime()
-        .domain([new Date(2014 - data.length+1, 0, 1), (new Date(2014, 0, 1))])
+    var xScale = d3.scaleLinear()
+        .domain(0, data.length)
         .range([0, width]);
 
     var yScale = d3.scaleLinear()
@@ -236,17 +236,17 @@ function DrawAidGraph(data){
 
     var fedLine = d3.line()
         // assign the X function to plot our line as we wish
-        .x(function(d,i) { 
+        .x(function(d, i) { 
             // verbose logging to show what's actually being done
-            console.log('Plotting X value for data point: ' + d + ' using index: ' + i + ' to be at: ' + x(i) + ' using our xScale.');
+            console.log('Plotting X value for data point: ' + d.date + ' using index: ' + i + ' to be at: ' + xScale(d.date) + ' using our xScale.');
             // return the X coordinate where we want to plot this datapoint
-            return x(i); 
+            return i; 
         })
         .y(function(d) { 
             // verbose logging to show what's actually being done
-            console.log('Plotting Y value for data point: ' + d + ' to be at: ' + y(d) + " using our yScale.");
+            console.log('Plotting Y value for data point: ' + d.date + ' to be at: ' + yScale(d.fedRate) + " using our yScale.");
             // return the Y coordinate where we want to plot this datapoint
-            return y(d.data.fedLine); 
+            return yScale(d.fedRate); 
         })
 
     var xAxis = d3.axisBottom(xScale)
