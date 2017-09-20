@@ -1,15 +1,5 @@
 /* A D D E D   C H A N G E S  */
 
-/* class to toggle visibility of main content */
-.school-row{
-
-}
-.main{
-
-}
-
-
-
 /* N A V B A R  */
 .navbar {
     padding-bottom: 0;
@@ -23,6 +13,7 @@
 
 .navbar-brand {
     float: left;
+    margin-right: 0;
 }
 
 .navbar-text {
