@@ -113,6 +113,7 @@
         </div>
 
         <!-- C O N T E N T  B O X  -->
+        <!-- Welcome div -->
         <div class="container page-body welcome">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
@@ -121,6 +122,7 @@
                 </div>
             </div>
         </div>
+        <!-- Chart div -->
         <div class="container page-body main">
             <div class="row">
                 <div class="col content">
@@ -143,18 +145,16 @@
                 </div>
             </div>
         </div>
+        <!-- Results div -->
         <div class="container page-body chart-body">
             <div id="results-box">
                 <div class="row">
                     <h3 id="school-name">School Name</h3>
                 </div>
-                <div class="row">
+
+                <div class="row results-content">
                     <div class="col content">
                         <div id="charts">
-
-                            <div id="googleMap" style="width:100%;height:400px;">
-                            </div>
-
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="bar-tab" data-toggle="tab" href="#bar-graph" role="tab" aria-controls="bar" aria-expanded="true"
@@ -163,48 +163,52 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="demo-tab" data-toggle="tab" href="#demo-graph" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Demographics</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="map-tab" data-toggle="tab" href="#googl-map" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Location</a>
-                                </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade active show" id="bar-graph" role="tabpanel" aria-labelledby="bar-tab" aria-expanded="true">
                                 </div>
                                 <div class="tab-pane fade" id="demo-graph" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false">
                                 </div>
-                                <div class="tab-pane fade" id="google-map" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false">
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <button id="go-back-button" class="btn btn-outline-secondary my-2 my-sm-0">Go Back</button>
                 </div>
-            </div>
-            <div class="results-loading">
-                <img class="loading-icon" src="assets/images/time-loading.gif" alt="Loading Icon">
-                <h6>Loading . . .</h6>
+
+                <div class="results-loading">
+                    <img class="loading-icon" src="assets/images/time-loading.gif" alt="Loading Icon">
+                    <h6>Loading . . .</h6>
+                </div>
             </div>
         </div>
 
+        <div class="card bg-light mb-3 map-card">
+            <h3 class="card-header">Map It</h3>
+            <div class="card-body">
+                <div id="googleMap" style="width:100%;height:400px;">
+                </div>
+            </div>
+        </div>
 
         <!-- R E T U R N   T O   T O P  -->
         <div class="toTop">
             <a href="#" class="toTop badge badge-info">Return to Top</a>
         </div>
         <div class="push"></div>
-    </div>
 
-    <!-- F I X E D   F O O T E R -->
-    <div class="navbar navbar-default fixed-footer">
-        <div class="container center-footer">
-            <p class="navbar-text footer-content">Copyright:
-                <a class="footer-content" href="https://github.com/Ankitashah212" target="_blank">A.S</a>
-                <a class="footer-content" href="https://github.com/lpeteet" target="_blank">L.P</a>
-                <a class="footer-content" href="https://github.com/MaddJhin" target="_blank">F.C</a>
-                <a class="footer-content" href="https://github.com/lcanizzo" target="_blank">L.C</a> &copy; 2017
-            </p>
+        <!-- F I X E D   F O O T E R -->
+        <div class="navbar navbar-default fixed-footer">
+            <div class="container center-footer">
+                <p class="navbar-text footer-content">Copyright:
+                    <a class="footer-content" href="https://github.com/Ankitashah212" target="_blank">A.S</a>
+                    <a class="footer-content" href="https://github.com/lpeteet" target="_blank">L.P</a>
+                    <a class="footer-content" href="https://github.com/MaddJhin" target="_blank">F.C</a>
+                    <a class="footer-content" href="https://github.com/lcanizzo" target="_blank">L.C</a> &copy; 2017
+                </p>
+            </div>
         </div>
     </div>
 </body>

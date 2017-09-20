@@ -6,10 +6,14 @@
 //L O A D I N G   S C R E E N 
 function hideLoader() {
     $('.results-loading').fadeOut();
+    $('.results-content').css('visibility','visible').hide().fadeIn("slow");
+    $('.map-card').css('visibility','visible').hide().fadeIn("slow");
 }
 
-function showLoader() {
-    $('.results-loading').show();
+function showLoader(){
+    $('.results-loading').show();   
+    $('.results-content').css('visibility','hidden');    
+    $('.map-card').css('visibility','hidden');    
 }
 
 //W E L C O M E   D I V
