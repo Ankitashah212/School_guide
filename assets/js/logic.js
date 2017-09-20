@@ -4,7 +4,7 @@
 //******************************************/
 
 //L O A D I N G   S C R E E N 
-function hideLoader(){
+function hideLoader() {
     $('.results-loading').fadeOut();
     $('.results-content').css('visibility','visible').hide().fadeIn("slow");
     $('.map-card').css('visibility','visible').hide().fadeIn("slow");
@@ -17,12 +17,12 @@ function showLoader(){
 }
 
 //W E L C O M E   D I V
-function hideWelcome(){
+function hideWelcome() {
     $('.welcome').hide();
 }
 
-function showWelcome(){
-    $('.welcome').show();    
+function showWelcome() {
+    $('.welcome').show();
 }
 
 function fetchData() {
@@ -89,7 +89,7 @@ function fetchData() {
         query = query + "&school.state=" + state;
     }
 
-       console.log("Query " + query);
+    console.log("Query " + query);
     $.ajax({
         url: query,
         method: 'GET',
@@ -135,9 +135,9 @@ function displayData(result) {
         if (value != "type") {
             // alert($el.id+"-"+$el.name+"-"+$el.type);
             // alert("Selected Row's ID: '" + $el.id + "'")
-          
+
             $(".main").css("display", "none");
-            hideWelcome();            
+            hideWelcome();
             $(".chart-body").show();
             DisplayGraphs($el.id);
             setTimeout(hideLoader, 1000);
@@ -145,8 +145,41 @@ function displayData(result) {
     });
 } //displayData()
 
+function populateOptions() {
+    // values for state drop down
+    var stateOptions = ["Blank", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL",
+        "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI",
+        "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+        "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV",
+        "WI", "WY"];
+    var stateDropDown = $("#state");
+
+    for (var i = 0; i < stateOptions.length; i++) {
+        stateDropDown.append("<option>" + stateOptions[i] + "</option>");
+    }
+
+    var degreeOptions = [
+        "Blank", "Agriculture", "Architecture", "Biological", "Business Marketing",
+        "Communication", "Communications Technology", "Computer", "Construction", "Education",
+        "Engineering", "Engineering Technology", "English", "Ethnic Cultural Gender",
+        "Family Consumer Science", "Health", "History", "Humanities", "Language", "Legal",
+        "Library", "Mathematics", "Mechanic Repair Technology", "Military", "Multidiscipline",
+        "Parks Recreation Fitness", "Personal Culinary", "Philosophy Religious", "Physical Science",
+        "Precision Production", "Psychology", "Public Administration Social Service", "Resources",
+        "Science Technology", "Security Law Enforcement", "Social Science",
+        "Theology Religious Vocation", "Transportation", "Visual Performing"];
+
+    var degreeDropDown = $("#degree");
+
+    for (var i = 0; i < degreeOptions.length; i++) {
+        degreeDropDown.append("<option>" + degreeOptions[i] + "</option>");
+    }
+}
+
 $(document).ready(function () {
 
+    //populating dropdowns
+    populateOptions();
     //*******************************************/
     //****************  EVENTS  *****************/
     //*******************************************/
@@ -155,7 +188,7 @@ $(document).ready(function () {
     jQuery("#form-button, #search-button").on("click", fetchData);
 
     //On keyup enter in search calls fetchData() Function
-    $("#search-input").on("keyup", (e)=>{
+    $("#search-input").on("keyup", (e) => {
         //If "enter" pressed, call function
         if (e.which == 13) {
             fetchData();
@@ -163,10 +196,10 @@ $(document).ready(function () {
     })
 
     // On click of go-back-button returns to table div
-    $("#go-back-button").on('click', ()=> {
+    $("#go-back-button").on('click', () => {
         $(".chart-body").css("display", "none");
-        $(".main").show();      
-        showLoader();  
+        $(".main").show();
+        showLoader();
         showWelcome();
     })
 }) ///$(document).ready(function() {
