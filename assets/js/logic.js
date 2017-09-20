@@ -39,9 +39,6 @@ function fetchData() {
 
     console.log("inputs :", searchInput, satScore, tuition, degree);
 
-    //Clear Field
-    $('#search-input').val('');
-
     //Query to fetch filtered data
     var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
         "school.degrees_awarded.predominant=2,3&" +
@@ -55,7 +52,7 @@ function fetchData() {
     if (searchInput.length > 1) {
         query = query + "&school.name=" + searchInput;
     }
-    if (satScore.length > 2) {
+    if (satScore.length > 1) {
         query = query + "&2014.admissions.sat_scores.average.overall__range=700.."
             + satScore;
     }
@@ -122,7 +119,6 @@ function displayData(result) {
         }
     });
 } //displayData()
-
 
 $(document).ready(function () {
 
