@@ -32,7 +32,8 @@ function GetAdmissionData(object) {
             // And the subproperty is defined
             if(typeof object[property].admissions !== "undefined")
                 // Pass that data to our empty array
-                data.push(object[property].admissions.admission_rate.overall);
+                if(object[property].admissions.sat_scores.average.overall != null)
+                    data.push(object[property].admissions.sat_scores.average.overall);
         }
     }
 
@@ -61,7 +62,6 @@ function GetDemoData(object) {
 }
 
 function DrawBarGraph(data) {
-
     console.log("Data Set for Addmissions Graph", data);
     // We make an empty svg to add our elements 
     $("#bar-graph").empty();
@@ -73,11 +73,12 @@ function DrawBarGraph(data) {
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     var xScale = d3.scaleTime()
-        .domain([new Date(1996, 0, 1), (new Date(2014, 0, 1))])
-        .range([0, width]);   
+        .domain([new Date(2014 - data.length+1, 0, 1), (new Date(2014, 0, 1))])
+        .range([0, width]);
 
     var yScale = d3.scaleLinear()
-        .domain([0, 100])
+        .rangeRound([height, 0])
+        .domain([0, 2400])
         .range([height, 0]);
 
     var xAxis = d3.axisBottom(xScale)
@@ -86,30 +87,35 @@ function DrawBarGraph(data) {
     var yAxis = d3.axisLeft()
         .scale(yScale);
 
+    var barWidth = width / (data.length-1);
+
     svg.append('g')
-        .attr("transform", "translate(0, "+ (height) +")")
+        .attr("transform", "translate(" + barWidth/2 + ", "+ (height) +")")
         .classed('axis_x', true)
         .call(xAxis);
     
     svg.append('g')
+        // .attr("transform", function(d) { return "translate(" + barWidth + ",0)"; })
         .classed('axis_y', true)
         .call(yAxis);
 
+        
+        
     // Make a bar for each element in the data array by using d3 
     svg.selectAll('rect')
         .data(data)
         .enter()
         .append('rect')
             .attr("fill", "#d1c9b8")
-            .attr("width", 15)
+            .attr("width", barWidth /2)
             .attr("y", function (d) {
-                return height - (d * height);
+                return yScale(d);
             })
             .attr("height", function (d) {
-                return d * height;
+                return height - yScale(d);
             })
             .attr("x", function(d, i) {
-                return i * 21.38;
+                return i * barWidth + (barWidth/4);
     });
 
 }
@@ -190,6 +196,10 @@ function DisplayGraphs(id) {
         console.log("Displaying Result");
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
+        //Display school name
+        let name = dataObject.school.name;
+        $('#school-name').html(name);
+
         console.log("lat and long");
         console.log(dataObject.location.lat);
         console.log(dataObject.location.lon);
