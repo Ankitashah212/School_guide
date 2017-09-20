@@ -43,7 +43,7 @@ function GetAdmissionData(object) {
     return data;
 }
 
-function GetAidData(object) {
+function GetAidData(object) {0
     // Turn the object into a workable data array
     // Start with a blank data array
     var data = [];
@@ -228,8 +228,15 @@ function DrawAidGraph(data){
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    var xScale = d3.scaleLinear()
-        .domain([0, data.length])
+    var parseTime = d3.timeParse("%Y");
+        
+    data.forEach(function(d) {
+        d.date = parseTime(d.date);
+    });
+
+    var xScale = d3.scaleTime()
+        .domain([new Date(1996,0,1), (new Date(2014,0,1))])
+        .rangeRound([0, width])
         .range([0, width]);
 
     var yScale = d3.scaleLinear()
@@ -239,18 +246,18 @@ function DrawAidGraph(data){
 
     var fedLine = d3.line()
         // assign the X function to plot our line as we wish
-        .x(function(d, i) { return xScale(i); })
-        .y(function(d) { return yScale(d.fedRate); })
+        .x(function(d) { console.log("New X", d.date);return xScale(d.date); })
+        .y(function(d) { return yScale(d.fedRate); });
 
     var pelLine = d3.line()
         // assign the X function to plot our line as we wish
-        .x(function(d, i) { return xScale(i); })
-        .y(function(d) { return yScale(d.pelRate); })
+        .x(function(d) { return xScale(d.date); })
+        .y(function(d) { return yScale(d.pelRate); });
 
     var loanLine = d3.line()
         // assign the X function to plot our line as we wish
-        .x(function(d, i) { return xScale(i); })
-        .y(function(d) { return yScale(d.loanRate); })
+        .x(function(d) { return xScale(d.date); })
+        .y(function(d) { return yScale(d.loanRate); });
 
     var xAxis = d3.axisBottom(xScale)
         .ticks(data.length /2)
