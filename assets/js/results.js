@@ -42,6 +42,32 @@ function GetAdmissionData(object) {
     return data;
 }
 
+function GetAidData(object) {
+    // Turn the object into a workable data array
+    // Start with a blank data array
+    var data = [];
+
+    // For each property (for our objects it should be each year), 
+    for (var property in object) {
+        // if that property(year) exists
+        if (object.hasOwnProperty(property)) {
+            // And the subproperty is defined
+            if(typeof object[property].aid !== "undefined")
+            {    // Pass that data to our empty array
+                var tempObject = {
+                    label: property,
+                    pelRate: object[property].aid.pell_loan_rate,
+                    fedRate: object[property].aid.federal_loan_rate,
+                    loanPercent: object[property].students_with_any_loan
+                }
+                data.push(tempObject);
+            }
+        }
+    }
+
+    return data;
+}
+
 function GetDemoData(object) {
     var data = [];
     // For each property (for our objects it corresponse to different ethnicities), 
@@ -101,8 +127,6 @@ function DrawBarGraph(data) {
         // .attr("transform", function(d) { return "translate(" + barWidth + ",0)"; })
         .classed('axis_y', true)
         .call(yAxis);
-
-        
         
     // Make a bar for each element in the data array by using d3 
     svg.selectAll('rect')
@@ -191,6 +215,18 @@ function DrawDemoGraph(data) {
         .style('z-index', 10);
 }
 
+function DrawAidGraph(data){
+    console.log("Data Set for Aid Graph", data);
+    // We make an empty svg to add our elements 
+    $("#bar-graph").empty();
+    var svg = d3.select('#aid-graph')
+        .append('svg')
+        .attr("width", fullWidth)
+        .attr("height", fullHeight)
+        .append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+}
+
 function DrawGoogleMap(data) {
      $("#google-map").empty();
     //console.log(dataObject.location.lat);
@@ -238,6 +274,9 @@ function DisplayGraphs(id) {
 
         var demoData = GetDemoData(dataObject);
         DrawDemoGraph(demoData);
+
+        var aidData = GetAidData(dataObject);
+        DrawAidGraph(aidData);
 
         DrawGoogleMap(dataObject);
 
