@@ -114,6 +114,7 @@ function displayData(result) {
         var tmp = [
             {
                 "school.name": "" + name,
+                "id": "" + id,
                 "2014.student.size": "" + studentSize,
                 "2014.admissions.sat_scores.average.overall": "" + sat
             }
