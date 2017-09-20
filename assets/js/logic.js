@@ -3,11 +3,19 @@
 //**************  FUNCTIONS  ***************/
 //******************************************/
 
+//L O A D I N G   S C R E E N 
+function hideLoader(){
+    $('.results-loading').fadeOut();
+}
+
+function showLoader(){
+    $('.results-loading').show();    
+}
 function fetchData() {
 
     //Clear Table
     //$('#clienti').bootstrapTable('removeAll');
-
+    showLoader();
     $(".main").show();
     $(".chart-body").css("display", "none");
     console.log("fetchData() Called")
@@ -116,6 +124,7 @@ function displayData(result) {
             $(".main").css("display", "none");
             $(".chart-body").show();
             DisplayGraphs($el.id);
+            setTimeout(hideLoader, 1000);
         }
     });
 } //displayData()
@@ -140,6 +149,7 @@ $(document).ready(function () {
     // On click of go-back-button returns to table div
     $("#go-back-button").on('click', ()=> {
         $(".chart-body").css("display", "none");
-        $(".main").show();        
+        $(".main").show();      
+        showLoader();  
     })
 }) ///$(document).ready(function() {
