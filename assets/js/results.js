@@ -1,5 +1,6 @@
 // Variables for drawing data
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
+var lineColor = d3.scaleOrdinal(d3.schemeCategory20b);
 
 var fullWidth = 750;
 var fullHeight = 360;
@@ -267,21 +268,21 @@ function DrawAidGraph(data){
 
     svg.append('path')
         .classed('line', true)
-        .style('stroke', color(0))
+        .style('stroke', lineColor(0))
         .style('stroke-width', "2px")
         .style('fill', "none")
         .attr("d", fedLine(data));
     
     svg.append('path')
         .classed('line', true)
-        .style('stroke', color(1))
+        .style('stroke', lineColor(1))
         .style('stroke-width', "2px")
         .style('fill', "none")
         .attr("d", pelLine(data));
 
     svg.append('path')
         .classed('line', true)
-        .style('stroke', color(2))
+        .style('stroke', lineColor(2))
         .style('stroke-width', "2px")
         .style('fill', "none")
         .attr("d", loanLine(data));
@@ -306,10 +307,10 @@ function DrawAidGraph(data){
         .attr('width', legendRectSize)
         .attr('height', legendRectSize)
         .style('fill', function (d, i) {
-            return color(i);
+            return lineColor(i);
         })
         .style('stroke', function (d, i) {
-            return color(i);
+            return lineColor(i);
         });
     
     legend.append('text')
