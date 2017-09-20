@@ -84,6 +84,7 @@ function DrawBarGraph(data) {
         .range([height, 0]);
 
     var xAxis = d3.axisBottom(xScale)
+        .ticks(data.length - 1)
         .tickSize(5);
         
     var yAxis = d3.axisLeft()
@@ -92,7 +93,7 @@ function DrawBarGraph(data) {
     var barWidth = width / (data.length-1);
 
     svg.append('g')
-        .attr("transform", "translate(" + barWidth/2 + ", "+ (height) +")")
+        .attr("transform", "translate(0,"+ (height) +")")
         .classed('axis_x', true)
         .call(xAxis);
     
@@ -117,7 +118,7 @@ function DrawBarGraph(data) {
                 return height - yScale(d);
             })
             .attr("x", function(d, i) {
-                return i * barWidth + (barWidth/4);
+                return i * barWidth;
     });
 
 }
@@ -199,10 +200,10 @@ function DrawGoogleMap(data) {
         script_tag.setAttribute('defer','');
         script_tag.setAttribute('async','');
        
-        var element = $("<div>");
+       /* var element = $("<div>");
         element.attr("id", "googleMap");
-        element.html(script_tag);
-        $("#google-map").append(element);
+        element.html(script_tag);*/
+        $("#googleMap").append(script_tag);
 }
 
 function DisplayGraphs(id) {
