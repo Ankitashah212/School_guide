@@ -1,11 +1,11 @@
 // Variables for drawing data
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-var fullWidth = 600;
+var fullWidth = 750;
 var fullHeight = 360;
 var margin = {
     top: 15,
-    right: 150,
+    right: 300,
     left: 50,
     bottom: 50
   };
@@ -130,19 +130,17 @@ function DrawDemoGraph(data) {
     .append('svg')
     .attr('width', fullWidth)
     .attr('height', fullHeight)
-
     .append('g')
-        .attr('transform', 'translate(' + (fullWidth / 2) +
-        ',' + (fullHeight / 2) + ')');
-
-    // Add element to center the pie chart
-    svg.append('g')
-        .attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
+        .attr('transform', 'translate(' + (fullWidth / 2) + ',' + (fullHeight / 2) + ')');
 
     // Add the arc using d3.arc()
     var arc = d3.arc()
         .innerRadius(radius - donutWidth)
         .outerRadius(radius);
+
+    var labelArc = d3.arc()
+        .outerRadius(radius - 40)
+        .innerRadius(radius - 40);
 
     // Define the slices
     var pie = d3.pie()
@@ -150,15 +148,16 @@ function DrawDemoGraph(data) {
         .sort(null);
 
     // Draw the lines using path by passing our earlier variables
-    var path = svg.selectAll('path')
+    var g = svg.selectAll('path')
         .data(pie(data))
         .enter()
-        .append('path')
-            .attr('d', arc)
-            .attr('fill', function(d, i){
-                return color (d.data.label)
-            });
+        .append('g')
+            .classed('arc', true);
     
+    g.append('path')
+        .attr('d', arc)
+        .attr('fill', function(d, i){ return color (d.data.label)}) 
+
     var legend = svg.selectAll('.legend')
     .data(color.domain())
     .enter()
@@ -182,7 +181,12 @@ function DrawDemoGraph(data) {
         .attr('x', legendRectSize + legendSpacing)
         .attr('y', legendRectSize - legendSpacing)
         .text(function(d) { return d; });
-  
+
+    g.append("text")
+        .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+	    .text(function(d) { return Math.round(d.data.count*100) + " %";})	
+        .style("fill", "#fff")
+        .style('z-index', 10);
 }
 
 function DisplayGraphs(id) {
