@@ -100,7 +100,8 @@
 .toTop {
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
+    margin: 0 0 10px 10px;
 }
 
 /* F O O T E R  */
@@ -129,9 +130,8 @@ html, body{
 } 
 
 .fixed-footer {
-    margin-top: 20px;
-    width: 100%;
     height: 90px;
+    margin: 20px 20% 0 20%;
 }
 
 .center-footer {
