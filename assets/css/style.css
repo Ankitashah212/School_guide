@@ -10,6 +10,7 @@
 
 .chart-body{
     display: none;
+    position: relative;
 }
 
 /* N A V B A R  */
@@ -76,6 +77,27 @@
 .input-box {
     padding: 0;
 }  
+
+/* R E S U L T S   L O A D I N G  */
+.results-loading {
+    min-height: 440px;
+    max-height: 440px;
+    width: 100%;
+    background-color: white;
+
+    position: absolute;
+    top: 0;
+
+    text-align: center;
+    color: #444;
+    font-family:'Open Sans', sans-serif;
+    font-size: 19px;
+}
+
+.loading-icon {
+    margin: 5%;    
+    margin-bottom: 0;
+}
 
 /* R E S U L T S */
 #school-name {
