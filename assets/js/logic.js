@@ -3,16 +3,18 @@
 //**************  FUNCTIONS  ***************/
 //******************************************/
 
-function fetchData(event) {
+function fetchData() {
 
     //Clear Table
     //$('#clienti').bootstrapTable('removeAll');
 
+    $(".main").show();
+    $(".chart-body").css("display", "none");
     console.log("fetchData() Called")
     event.preventDefault();
 
     //getting value from index.html to filter results 
-    var schoolName = $("#school").val().trim();
+    var searchInput = $("#search-input").val().trim();
     var satScore = $("#sat").val().trim();
     var tuition = $("#tuition").val().trim();
     var degree = $("#degree").val().trim();
@@ -27,18 +29,15 @@ function fetchData(event) {
         state = "";
     }
 
-    /*if (schoolName.length < 1 && satScore.length < 1 && tuition.length < 1 && degree.length < 1 && state.length <1) {
+    /*if (searchInput.length < 1 && satScore.length < 1 && tuition.length < 1 && degree.length < 1 && state.length <1) {
         console.log("no input data");
         flag = false;
     }
 */
     //replacing spaces with + to make it query ready
-    schoolName = schoolName.replace(' ', '+');
+    searchInput = searchInput.replace(' ', '+');
 
-    console.log("inputs :", schoolName, satScore, tuition, degree);
-
-    //Clear Field
-    $('#school').val('');
+    console.log("inputs :", searchInput, satScore, tuition, degree);
 
     //Query to fetch filtered data
     var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
@@ -50,10 +49,10 @@ function fetchData(event) {
         "api_key=ATN7AHDhDngU3Sb4EUtkVMaTkhUA1hr6dkDNro0A";
 
     // checking each filter's value to be not null before adding it to query filter for API
-    if (schoolName.length > 1) {
-        query = query + "&school.name=" + schoolName;
+    if (searchInput.length > 1) {
+        query = query + "&school.name=" + searchInput;
     }
-    if (satScore.length > 2) {
+    if (satScore.length > 1) {
         query = query + "&2014.admissions.sat_scores.average.overall__range=700.."
             + satScore;
     }
@@ -113,14 +112,13 @@ function displayData(result) {
         if (value != "type") {
             // alert($el.id+"-"+$el.name+"-"+$el.type);
             // alert("Selected Row's ID: '" + $el.id + "'")
-
+          
             $(".main").css("display", "none");
             $(".chart-body").show();
             DisplayGraphs($el.id);
         }
     });
 } //displayData()
-
 
 $(document).ready(function () {
 
@@ -129,6 +127,19 @@ $(document).ready(function () {
     //*******************************************/
 
     //Input Form Submit Button calls fetchData() Function
-    jQuery("form").submit(fetchData);
+    jQuery("#form-button, #search-button").on("click", fetchData);
 
+    //On keyup enter in search calls fetchData() Function
+    $("#search-input").on("keyup", (e)=>{
+        //If "enter" pressed, call function
+        if (e.which == 13) {
+            fetchData();
+        }
+    })
+
+    // On click of go-back-button returns to table div
+    $("#go-back-button").on('click', ()=> {
+        $(".chart-body").css("display", "none");
+        $(".main").show();        
+    })
 }) ///$(document).ready(function() {

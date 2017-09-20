@@ -9,14 +9,16 @@
     <title>University Search</title>
 
     <!-- Bootstrap DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.css"
+    />
     <!-- Bootstrap Tables CSS -->
     <link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css">
 
     <!-- jQuery & jQuery UI -->
     <!-- DataTables JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.2.1/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
@@ -35,7 +37,8 @@
     <!-- CSS Reset -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
 
     <!-- CSS  -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -44,7 +47,7 @@
     <script src="assets/js/results.js"></script>
     <script src="assets/js/logic.js"></script>
     <script src="assets/js/location.js"></script>
-    
+
 </head>
 
 
@@ -56,135 +59,146 @@
         <div class="sticky-top">
 
             <nav class="navbar navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">
-                    <img src="assets/images/white-icon-sized.png" alt="Brand Icon">
-                    Find Schools
-                </a>
-                <span class="navbar-text">
-                    Get that education!
-                </span>
+                <div class="nav-content">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/white-icon-sized.png" alt="Brand Icon">
+                        Find Schools
+                    </a>
+                    <div class="search-box">
+                        <input id="search-input" class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button type="submit" id="search-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Enter</button>
+                    </div>
+                    <span class="navbar-text">
+                        Get that education!
+                    </span>
+                </div>
             </nav>
 
             <!-- F L O A T I N G   S E A R C H   B O X -->
             <div class="container rec-container">
 
-                <div class="form_contact" method="post">
-                    <form action="/action_page.php">
-                        <!-- S C H O O L   N A M E -->
-                        <input id="school" class="form-control mr-sm-2" type="text" placeholder="School Name">
+                <div class="card bg-light mb-3">
+                    <h3 class="card-header">Search Filters</h3>
+                    <div class="card-body">
+                        <div class="form_contact" method="post">
+                            <form action="/action_page.php">
+                                <!-- T U I T I O N  -->
+                                <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
 
-                        <!-- T U I T I O N  -->
-                        <input id="tuition" class="form-control mr-sm-2" type="number" placeholder="Maximum Tuition">
+                                <!-- S A T   S C O R E S  -->
+                                <input id="sat" class="form-control mr-sm-2" type="number" placeholder="Maximum SAT">
 
-                        <!-- S A T   S C O R E S  -->
-                        <input id="sat" class="form-control mr-sm-2" type="number" placeholder="Maximum SAT">
+                                <!-- S T A T E -->
+                                <div class="form-group">
+                                    <label class="form-label" for="state">Select State</label>
+                                    <select class="form-control" id="state">
+                                        <option>Blank</option>  
+                                        <option>AL</option>
+                                        <option>AK</option>
+                                        <option>AZ</option>
+                                        <option>AR</option>
+                                        <option>CA</option>
+                                        <option>CO</option>
+                                        <option>CT</option>
+                                        <option>DE</option>
+                                        <option>FL</option>
+                                        <option>GA</option>
+                                        <option>HI</option>
+                                        <option>ID</option>
+                                        <option>IL</option>
+                                        <option>IN</option>
+                                        <option>IA</option> 
+                                        <option>KS</option>
+                                        <option>KY</option>
+                                        <option>LA</option>
+                                        <option>ME</option>
+                                        <option>MD</option>
+                                        <option>MA</option>
+                                        <option>MI</option>
+                                        <option>MN</option>
+                                        <option>MS</option>
+                                        <option>MO</option>
+                                        <option>MT</option>
+                                        <option>NE</option>
+                                        <option>NV</option>
+                                        <option>NH</option>
+                                        <option>NJ</option>
+                                        <option>NM</option>
+                                        <option>NY</option>
+                                        <option>NC</option>
+                                        <option>ND</option>
+                                        <option>OH</option>
+                                        <option>OK</option>
+                                        <option>OR</option>
+                                        <option>PA</option>
+                                        <option>RI</option>
+                                        <option>SC</option>
+                                        <option>SD</option>
+                                        <option>TN</option>
+                                        <option>TX</option>
+                                        <option>UT</option>
+                                        <option>VT</option>
+                                        <option>VA</option>
+                                        <option>WA</option>
+                                        <option>WV</option>
+                                        <option>WI</option>
+                                        <option>WY</option>
+                                    </select>
+                                </div>
 
-                        <!-- S T A T E -->
-                        <div class="form-group">
-                            <label id="state-label" for="state">Select State</label>
-                            <select class="form-control" id="state">
-                                <option>Blank</option>  
-                                <option>AL</option>
-                                <option>AK</option>
-                                <option>AZ</option>
-                                <option>AR</option>
-                                <option>CA</option>
-                                <option>CO</option>
-                                <option>CT</option>
-                                <option>DE</option>
-                                <option>FL</option>
-                                <option>GA</option>
-                                <option>HI</option>
-                                <option>ID</option>
-                                <option>IL</option>
-                                <option>IN</option>
-                                <option>IA</option> 
-                                <option>KS</option>
-                                <option>KY</option>
-                                <option>LA</option>
-                                <option>ME</option>
-                                <option>MD</option>
-                                <option>MA</option>
-                                <option>MI</option>
-                                <option>MN</option>
-                                <option>MS</option>
-                                <option>MO</option>
-                                <option>MT</option>
-                                <option>NE</option>
-                                <option>NV</option>
-                                <option>NH</option>
-                                <option>NJ</option>
-                                <option>NM</option>
-                                <option>NY</option>
-                                <option>NC</option>
-                                <option>ND</option>
-                                <option>OH</option>
-                                <option>OK</option>
-                                <option>OR</option>
-                                <option>PA</option>
-                                <option>RI</option>
-                                <option>SC</option>
-                                <option>SD</option>
-                                <option>TN</option>
-                                <option>TX</option>
-                                <option>UT</option>
-                                <option>VT</option>
-                                <option>VA</option>
-                                <option>WA</option>
-                                <option>WV</option>
-                                <option>WI</option>
-                                <option>WY</option>
-                            </select>
+                                <!-- D E G R E E   B.A -->
+                                <div class="form-group">
+                                    <label class="form-label" for="degree">Select Degree</label>
+                                    <select class="form-control" id="degree">
+                                        <option>Blank</option>                                     
+                                        <option>Agriculture</option> 
+                                        <option>Architecture</option>
+                                        <option>Biological</option>         
+                                        <option>Business Marketing</option>
+                                        <option>Communication</option>      
+                                        <option>Communications Technology</option>
+                                        <option>Computer</option>
+                                        <option>Construction</option>
+                                        <option>Education</option>        
+                                        <option>Engineering</option>
+                                        <option>Engineering Technology</option>
+                                        <option>English</option>
+                                        <option>Ethnic Cultural Gender</option>
+                                        <option>Family Consumer Science</option>
+                                        <option>Health</option>     
+                                        <option>History</option>        
+                                        <option>Humanities</option>
+                                        <option>Language</option>
+                                        <option>Legal</option> 
+                                        <option>Library</option>
+                                        <option>Mathematics</option>
+                                        <option>Mechanic Repair Technology</option>
+                                        <option>Military</option>
+                                        <option>Multidiscipline</option>
+                                        <option>Parks Recreation Fitness</option>   
+                                        <option>Personal Culinary</option>
+                                        <option>Philosophy Religious</option>
+                                        <option>Physical Science</option>
+                                        <option>Precision Production</option>    
+                                        <option>Psychology</option>     
+                                        <option>Public Administration Social Service</option>
+                                        <option>Resources</option>
+                                        <option>Science Technology</optio>
+                                        <option>Security Law Enforcement</option>
+                                        <option>Social Science</option>
+                                        <option>Theology Religious Vocation</option>
+                                        <option>Transportation</option>
+                                        <option>Visual Performing</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" id="form-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                            </form>
                         </div>
-
-                        <!-- D E G R E E   B.A -->
-                        <div class="form-group">
-                            <label for="degree">Select Degree</label>
-                            <select class="form-control" id="degree">
-                                <option>Blank</option>                                     
-                                <option>Agriculture</option> 
-                                <option>Architecture</option>
-                                <option>Biological</option>         
-                                <option>Business Marketing</option>
-                                <option>Communication</option>      
-                                <option>Communications Technology</option>
-                                <option>Computer</option>
-                                <option>Construction</option>
-                                <option>Education</option>        
-                                <option>Engineering</option>
-                                <option>Engineering Technology</option>
-                                <option>English</option>
-                                <option>Ethnic Cultural Gender</option>
-                                <option>Family Consumer Science</option>
-                                <option>Health</option>     
-                                <option>History</option>        
-                                <option>Humanities</option>
-                                <option>Language</option>
-                                <option>Legal</option> 
-                                <option>Library</option>
-                                <option>Mathematics</option>
-                                <option>Mechanic Repair Technology</option>
-                                <option>Military</option>
-                                <option>Multidiscipline</option>
-                                <option>Parks Recreation Fitness</option>   
-                                <option>Personal Culinary</option>
-                                <option>Philosophy Religious</option>
-                                <option>Physical Science</option>
-                                <option>Precision Production</option>    
-                                <option>Psychology</option>     
-                                <option>Public Administration Social Service</option>
-                                <option>Resources</option>
-                                <option>Science Technology</optio>
-                                <option>Security Law Enforcement</option>
-                                <option>Social Science</option>
-                                <option>Theology Religious Vocation</option>
-                                <option>Transportation</option>
-                                <option>Visual Performing</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" id="form-button" class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </div>
                 </div>
+
+
             </div>
         </div>
 
@@ -213,6 +227,9 @@
         </div>
         <div class="container page-body chart-body">
             <div class="row">
+                <h3 id="school-name">School Name</h3>
+            </div>
+            <div class="row">
                 <div class="col content">
                     <div id="charts">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -225,33 +242,43 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="map-tab" data-toggle="tab" href="#google-map" role="tab" aria-controls="demo" data-ytta-id="-" aria-expanded="false">Location</a>
-                                <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade active show" id="bar-graph"  role="tabpanel" aria-labelledby="bar-tab"  aria-expanded="true"></div>
-                                        <div class="tab-pane fade"             id="demo-graph" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false"></div>
-                                        <div class="tab-pane fade"             id="google-map" role="tabpanel" aria-labelledby="map-tab"  aria-expanded="false">
-                                            <div id="map"></div>
-                                            <div id="infowindow-content">
-                                                <img id="place-icon" src="" height="16" width="16">
-                                                <span id="place-name"  class="title"></span><br>
-                                                Place ID <span id="place-id"></span><br>
-                                                <span id="place-address"></span>
-                                            </div>
-                                        </div>
                             </li>
                         </ul>
-                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade active show" id="bar-graph" role="tabpanel" aria-labelledby="bar-tab" aria-expanded="true">
+                            </div>
+                            <div class="tab-pane fade" id="demo-graph" role="tabpanel" aria-labelledby="demo-tab" aria-expanded="false">
+                            </div>
+                            <div class="tab-pane fade" id="google-map" role="tabpanel" aria-labelledby="map-tab" aria-expanded="false">
+                               
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <button id="go-back-button" class="btn btn-outline-secondary my-2 my-sm-0">Go Back</button>
+            </div>
         </div>
 
-    
+
         <!-- R E T U R N   T O   T O P  -->
         <div class="toTop">
             <a href="#" class="toTop badge badge-info">Return to Top</a>
         </div>
         <div class="push"></div>
+    </div>
+
+    <!-- F I X E D   F O O T E R -->
+    <div class="navbar navbar-default fixed-footer">
+        <div class="container center-footer">
+            <p class="navbar-text footer-content">Copyright:
+                <a class="footer-content" href="https://github.com/Ankitashah212" target="_blank">A.S</a>
+                <a class="footer-content" href="https://github.com/lpeteet" target="_blank">L.P</a>
+                <a class="footer-content" href="https://github.com/MaddJhin" target="_blank">F.C</a>
+                <a class="footer-content" href="https://github.com/lcanizzo" target="_blank">L.C</a> &copy; 2017
+            </p>
+        </div>
     </div>
 </body>
 

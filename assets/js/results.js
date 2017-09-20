@@ -1,11 +1,23 @@
 // Variables for drawing data
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-var width = 500;
-var height = 360;
+var fullWidth = 600;
+var fullHeight = 360;
+var margin = {
+    top: 15,
+    right: 150,
+    left: 50,
+    bottom: 50
+  };
+
+var width = fullWidth - margin.left - margin.right;
+var height = fullHeight - margin.top - margin.bottom;
 var radius = Math.min(width, height) / 2;
 var gLong;
 var gLat;
+var donutWidth = 75;
+var legendRectSize = 18;
+var legendSpacing = 4;
 
 function GetAdmissionData(object) {
     // Check the object passed
@@ -22,7 +34,8 @@ function GetAdmissionData(object) {
             // And the subproperty is defined
             if(typeof object[property].admissions !== "undefined")
                 // Pass that data to our empty array
-                data.push(object[property].admissions.admission_rate.overall);
+                if(object[property].admissions.sat_scores.average.overall != null)
+                    data.push(object[property].admissions.sat_scores.average.overall);
         }
     }
 
@@ -51,50 +64,60 @@ function GetDemoData(object) {
 }
 
 function DrawBarGraph(data) {
-
+    console.log("Data Set for Addmissions Graph", data);
     // We make an empty svg to add our elements 
+    $("#bar-graph").empty();
     var svg = d3.select('#bar-graph')
         .append('svg')
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", fullWidth)
+        .attr("height", fullHeight)
+        .append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     var xScale = d3.scaleTime()
-        .domain([new Date(1996, 0, 1), (new Date(2014, 0, 1))])
-        .range([0, width]);   
+        .domain([new Date(2014 - data.length+1, 0, 1), (new Date(2014, 0, 1))])
+        .range([0, width]);
 
     var yScale = d3.scaleLinear()
-        .domain([0, 100])
+        .rangeRound([height, 0])
+        .domain([0, 2400])
         .range([height, 0]);
 
-    var xAxis = d3.axisBottom()
-        .scale(xScale);
+    var xAxis = d3.axisBottom(xScale)
+        .tickSize(5);
         
     var yAxis = d3.axisLeft()
         .scale(yScale);
 
+    var barWidth = width / (data.length-1);
+
     svg.append('g')
+        .attr("transform", "translate(" + barWidth/2 + ", "+ (height) +")")
         .classed('axis_x', true)
         .call(xAxis);
     
     svg.append('g')
+        // .attr("transform", function(d) { return "translate(" + barWidth + ",0)"; })
         .classed('axis_y', true)
         .call(yAxis);
 
+        
+        
     // Make a bar for each element in the data array by using d3 
     svg.selectAll('rect')
         .data(data)
         .enter()
         .append('rect')
             .attr("fill", "#d1c9b8")
-            .attr("width", 15)
+            .attr("width", barWidth /2)
             .attr("y", function (d) {
-                return height - (d * 100);
+                return yScale(d);
             })
             .attr("height", function (d) {
-                return d * 100;
+                return height - yScale(d);
             })
             .attr("x", function(d, i) {
-                return i * 25;
+                return i * barWidth + (barWidth/4);
     });
 
 }
@@ -103,14 +126,15 @@ function DrawDemoGraph(data) {
     console.log("Data Set for Demo Graph", data);
 
     // Get basic svg 
+    $("#demo-graph").empty();
     var svg = d3.select('#demo-graph')
     .append('svg')
-    .attr('width', width)
-    .attr('height', height)
+    .attr('width', fullWidth)
+    .attr('height', fullHeight)
 
     .append('g')
-    .attr('transform', 'translate(' + (width / 2) +
-      ',' + (height / 2) + ')');
+        .attr('transform', 'translate(' + (fullWidth / 2) +
+        ',' + (fullHeight / 2) + ')');
 
     // Add element to center the pie chart
     svg.append('g')
@@ -118,7 +142,7 @@ function DrawDemoGraph(data) {
 
     // Add the arc using d3.arc()
     var arc = d3.arc()
-        .innerRadius(0)
+        .innerRadius(radius - donutWidth)
         .outerRadius(radius);
 
     // Define the slices
@@ -135,24 +159,50 @@ function DrawDemoGraph(data) {
             .attr('fill', function(d, i){
                 return color (d.data.label)
             });
+    
+    var legend = svg.selectAll('.legend')
+    .data(color.domain())
+    .enter()
+    .append('g')
+        .classed('legend', true)
+        .attr('transform', function(d, i) {
+            var height = legendRectSize + legendSpacing;
+            var offset =  height * color.domain().length / 2;
+            var horz = width / 2;
+            var vert = i * height - offset;
+            return 'translate(' + horz + ',' + vert + ')';
+    });
+    
+    legend.append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill', color)
+        .style('stroke', color);
+    
+    legend.append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+        .text(function(d) { return d; });
+  
 }
 
 function DrawGoogleMap(data) {
+     $("#google-map").empty();
     //console.log(dataObject.location.lat);
     //console.log(dataObject.location.lon);
     //initMap(data.location.lat, data.location.lon);
     // Call Google API
     //<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHNMMsn8uWjLdbAQUWpT0Vsnc11DzNHcg&libraries=places&callback=initMap" async defer></script>
     var script_tag = document.createElement('script');
-    
         script_tag.type = 'text/javascript';
-    
         script_tag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCHNMMsn8uWjLdbAQUWpT0Vsnc11DzNHcg&libraries=places&callback=initMap"
         script_tag.setAttribute('defer','');
         script_tag.setAttribute('async','');
-        
-        document.body.appendChild(script_tag);
-        console.log("DrawGoogleMap after appendChild");
+       
+        var element = $("<div>");
+        element.attr("id", "googleMap");
+        element.html(script_tag);
+        $("#google-map").append(element);
 }
 
 function DisplayGraphs(id) {
@@ -167,9 +217,14 @@ function DisplayGraphs(id) {
         console.log("Displaying Result");
         var dataObject = response.results["0"];
         console.log("Base School Object", dataObject);
-        console.log("lat and long");
+        //Display school name
+        let name = dataObject.school.name;
+        $('#school-name').html(name);
+
+      /*  console.log("lat and long");
         console.log(dataObject.location.lat);
         console.log(dataObject.location.lon);
+        */
         gLat = dataObject.location.lat;
         gLong = dataObject.location.lon;
 
@@ -183,3 +238,7 @@ function DisplayGraphs(id) {
 
     });
 }
+
+$(document).ready(function() {
+    DisplayGraphs(164924);    
+})
