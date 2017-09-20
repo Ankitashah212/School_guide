@@ -55,7 +55,7 @@ function GetAidData(object) {
             if(typeof object[property].aid !== "undefined")
             {    // Pass that data to our empty array
                 var tempObject = {
-                    label: property,
+                    date: property,
                     pelRate: object[property].aid.pell_loan_rate,
                     fedRate: object[property].aid.federal_loan_rate,
                     loanPercent: object[property].students_with_any_loan
@@ -144,7 +144,6 @@ function DrawBarGraph(data) {
             .attr("x", function(d, i) {
                 return i * barWidth;
     });
-
 }
 
 function DrawDemoGraph(data) {
@@ -218,13 +217,54 @@ function DrawDemoGraph(data) {
 function DrawAidGraph(data){
     console.log("Data Set for Aid Graph", data);
     // We make an empty svg to add our elements 
-    $("#bar-graph").empty();
+    $("#aid-graph").empty();
     var svg = d3.select('#aid-graph')
         .append('svg')
         .attr("width", fullWidth)
         .attr("height", fullHeight)
         .append('g')
-            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    var xScale = d3.scaleTime()
+        .domain([new Date(2014 - data.length+1, 0, 1), (new Date(2014, 0, 1))])
+        .range([0, width]);
+
+    var yScale = d3.scaleLinear()
+        .rangeRound([height, 0])
+        .domain([0, 1])
+        .range([height, 0]);
+
+    var fedLine = d3.line()
+        // assign the X function to plot our line as we wish
+        .x(function(d,i) { 
+            // verbose logging to show what's actually being done
+            console.log('Plotting X value for data point: ' + d + ' using index: ' + i + ' to be at: ' + x(i) + ' using our xScale.');
+            // return the X coordinate where we want to plot this datapoint
+            return x(i); 
+        })
+        .y(function(d) { 
+            // verbose logging to show what's actually being done
+            console.log('Plotting Y value for data point: ' + d + ' to be at: ' + y(d) + " using our yScale.");
+            // return the Y coordinate where we want to plot this datapoint
+            return y(d.data.fedLine); 
+        })
+
+    var xAxis = d3.axisBottom(xScale)
+        .ticks(data.length /2)
+        .tickSize(5);
+        
+    var yAxis = d3.axisLeft()
+        .scale(yScale);
+
+    svg.append('g')
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append('g')
+        .call(yAxis);
+
+    svg.append('path')
+        .attr("d", fedLine(data));
 }
 
 function DrawGoogleMap(data) {
