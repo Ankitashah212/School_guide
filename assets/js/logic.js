@@ -52,7 +52,7 @@ function fetchData() {
     if (searchInput.length > 1) {
         query = query + "&school.name=" + searchInput;
     }
-    if (satScore.length > 2) {
+    if (satScore.length > 1) {
         query = query + "&2014.admissions.sat_scores.average.overall__range=700.."
             + satScore;
     }
@@ -119,7 +119,6 @@ function displayData(result) {
         }
     });
 } //displayData()
-
 
 $(document).ready(function () {
 
