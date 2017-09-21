@@ -164,7 +164,6 @@ html, body{
 .fixed-footer {
     height: 90px;
     margin: 20px 20% 0 20%;
-    align-items: start;
 }
 
 .center-footer {
