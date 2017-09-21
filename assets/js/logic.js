@@ -8,6 +8,7 @@
 function hideLoader() {
     $('.results-loading').fadeOut();
     $('.results-content').css('visibility', 'visible').hide().fadeIn("slow");
+    $('.map-card').css('display', 'block');        
     $('.map-card').css('visibility', 'visible').hide().fadeIn("slow");
 }
 
@@ -15,6 +16,7 @@ function showLoader() {
     $('.results-loading').show();
     $('.results-content').css('visibility', 'hidden');
     $('.map-card').css('visibility', 'hidden');
+    $('.map-card').css('display', 'none');    
 }
 
 //W E L C O M E   D I V
