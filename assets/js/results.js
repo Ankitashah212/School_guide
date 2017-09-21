@@ -384,6 +384,3 @@ function DisplayGraphs(id) {
     });
 }
 
-$(document).ready(function() {
-    DisplayGraphs(164924);    
-})
