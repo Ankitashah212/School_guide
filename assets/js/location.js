@@ -19,6 +19,7 @@ function geocodeLatLng(geocoder, map, infowindow, myCenter) {
     if (status === 'OK') {
       if (results[0]) {
         map.setZoom(11);
+        console.log(myCenter);
         var marker = new google.maps.Marker({
           position: myCenter,
           map: map
@@ -26,6 +27,19 @@ function geocodeLatLng(geocoder, map, infowindow, myCenter) {
         infowindow.setContent(results[0].formatted_address);
         infowindow.open(map, marker);
       }
+    }else{
+      infowindow.setContent("Address Unavailable");
+      infowindow.open(map, marker);
     }
   });
+}
+
+function DrawGoogleMap() {
+  $("#google-map").empty();
+  var script_tag = document.createElement('script');
+     script_tag.type = 'text/javascript';
+     script_tag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCHNMMsn8uWjLdbAQUWpT0Vsnc11DzNHcg&libraries=places&callback=initMap"
+     script_tag.setAttribute('defer','');
+     script_tag.setAttribute('async','');
+     $("#googleMap").append(script_tag);
 }
