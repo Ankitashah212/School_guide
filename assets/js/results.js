@@ -145,6 +145,27 @@ function DrawBarGraph(data) {
             .attr("x", function(d, i) {
                 return i * barWidth;
     });
+
+    var legend = svg.append('g')
+        .classed('legend', true)
+        .attr('transform', function(d, i) {
+            var height = legendRectSize + legendSpacing;
+            var offset =  height - 50;
+            var horz = width + barWidth;
+            var vert = i * height - offset;
+            return 'translate(' + horz + ',' + vert + ')';
+    });
+    
+    legend.append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill', "#d1c9b8")
+        .style('stroke', "#d1c9b8");
+    
+    legend.append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+        .text("Average SAT Scores Overall");
 }
 
 function DrawDemoGraph(data) {
