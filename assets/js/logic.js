@@ -4,16 +4,17 @@
 //******************************************/
 
 //L O A D I N G   S C R E E N 
+
 function hideLoader() {
     $('.results-loading').fadeOut();
-    $('.results-content').css('visibility','visible').hide().fadeIn("slow");
-    $('.map-card').css('visibility','visible').hide().fadeIn("slow");
+    $('.results-content').css('visibility', 'visible').hide().fadeIn("slow");
+    $('.map-card').css('visibility', 'visible').hide().fadeIn("slow");
 }
 
-function showLoader(){
-    $('.results-loading').show();   
-    $('.results-content').css('visibility','hidden');    
-    $('.map-card').css('visibility','hidden');    
+function showLoader() {
+    $('.results-loading').show();
+    $('.results-content').css('visibility', 'hidden');
+    $('.map-card').css('visibility', 'hidden');
 }
 
 //W E L C O M E   D I V
@@ -27,13 +28,11 @@ function showWelcome() {
 
 function fetchData() {
 
-    //Clear Table
-    //$('#clienti').bootstrapTable('removeAll');
     showWelcome();
     showLoader();
     $(".main").show();
     $(".chart-body").css("display", "none");
-    console.log("fetchData() Called")
+    //  console.log("fetchData() Called")
     event.preventDefault();
 
     //getting value from index.html to filter results 
@@ -52,15 +51,10 @@ function fetchData() {
         state = "";
     }
 
-    /*if (searchInput.length < 1 && satScore.length < 1 && tuition.length < 1 && degree.length < 1 && state.length <1) {
-        console.log("no input data");
-        flag = false;
-    }
-*/
     //replacing spaces with + to make it query ready
     searchInput = searchInput.replace(' ', '+');
 
-    console.log("inputs :", searchInput, satScore, tuition, degree);
+    //  console.log("inputs :", searchInput, satScore, tuition, degree);
 
     //Query to fetch filtered data
     var query = "https://api.data.gov/ed/collegescorecard/v1/schools.json?" +
@@ -89,7 +83,7 @@ function fetchData() {
         query = query + "&school.state=" + state;
     }
 
-    console.log("Query " + query);
+    //console.log("Query " + query);
     $.ajax({
         url: query,
         method: 'GET',
@@ -100,7 +94,7 @@ function fetchData() {
 
 function displayData(result) {
 
-    console.log("result.results.length", result.results.length);
+    // console.log("result.results.length", result.results.length);
 
     //Clearing Table
     $('#clienti').bootstrapTable('removeAll');
@@ -112,33 +106,33 @@ function displayData(result) {
         if (!sat) {
             sat = 'N/A';
         }
-        console.log("sat", sat);
+        // console.log("sat", sat);
 
         var studentSize = result.results[i]["2014.student.size"]
         var id = result.results[i]["id"]
-/*         var tmp = [
-            {
-                "school.name": "" + name,
-                "id": "" + id,
-                "2014.student.size": "" + studentSize,
-                "2014.admissions.sat_scores.average.overall": "" + sat
-            }
-        ];
- */
+        /*         var tmp = [
+                    {
+                        "school.name": "" + name,
+                        "id": "" + id,
+                        "2014.student.size": "" + studentSize,
+                        "2014.admissions.sat_scores.average.overall": "" + sat
+                    }
+                ];
+         */
         var tmp = [
             {
                 "school.name": name,
-                "id":  id,
+                "id": id,
                 "2014.student.size": studentSize,
                 "2014.admissions.sat_scores.average.overall": sat
             }
         ];
         mydata2.push.apply(mydata2, tmp);
     }
-    console.log("mydata2", mydata2);
+    // console.log("mydata2", mydata2);
 
     $('#clienti').bootstrapTable({
-        undefinedText: 'n/a',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+        undefinedText: 'n/a',
         data: mydata2
     });
 
