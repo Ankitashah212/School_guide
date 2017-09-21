@@ -55,6 +55,10 @@ function fetchData() {
 
     //replacing spaces with + to make it query ready
     searchInput = searchInput.replace(' ', '+');
+    degree = degree.replace(' ', '_');
+    degree = degree.replace(' ', '_');
+
+    console.log(degree);
 
     //  console.log("inputs :", searchInput, satScore, tuition, degree);
 
