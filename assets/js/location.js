@@ -27,6 +27,9 @@ function geocodeLatLng(geocoder, map, infowindow, myCenter) {
         infowindow.setContent(results[0].formatted_address);
         infowindow.open(map, marker);
       }
+    }else{
+      infowindow.setContent("Address Unavailable");
+      infowindow.open(map, marker);
     }
   });
 }
