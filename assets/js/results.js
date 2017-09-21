@@ -19,6 +19,7 @@ var gLat = 35;
 var donutWidth = 75;
 var legendRectSize = 18;
 var legendSpacing = 4;
+var googleAPILoaded = false;
 
 function GetAdmissionData(object) {
     // Check the object passed
@@ -363,13 +364,6 @@ function DisplayGraphs(id) {
         let name = dataObject.school.name;
         $('#school-name').html(name);
 
-      /*  console.log("lat and long");
-        console.log(dataObject.location.lat);
-        console.log(dataObject.location.lon);
-        */
-        gLat = dataObject.location.lat;
-        gLong = dataObject.location.lon;
-
         var admissionData = GetAdmissionData(dataObject);
         DrawBarGraph(admissionData);
 
@@ -379,11 +373,8 @@ function DisplayGraphs(id) {
         var aidData = GetAidData(dataObject);
         DrawAidGraph(aidData);
 
+        gLat = dataObject.location.lat;
+        gLong = dataObject.location.lon;
         DrawGoogleMap();
-
     });
 }
-
-$(document).ready(function() {
-    DisplayGraphs(164924);    
-})
