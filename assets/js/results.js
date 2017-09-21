@@ -13,8 +13,8 @@ var margin = {
 var width = fullWidth - margin.left - margin.right;
 var height = fullHeight - margin.top - margin.bottom;
 var radius = Math.min(width, height) / 2;
-var gLong;
-var gLat;
+var gLong = -60;
+var gLat = 35;
 var donutWidth = 75;
 var legendRectSize = 18;
 var legendSpacing = 4;
@@ -318,25 +318,6 @@ function DrawAidGraph(data){
         .text(function(d) { return d; });
 }
 
-function DrawGoogleMap(data) {
-     $("#google-map").empty();
-    //console.log(dataObject.location.lat);
-    //console.log(dataObject.location.lon);
-    //initMap(data.location.lat, data.location.lon);
-    // Call Google API
-    //<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHNMMsn8uWjLdbAQUWpT0Vsnc11DzNHcg&libraries=places&callback=initMap" async defer></script>
-    var script_tag = document.createElement('script');
-        script_tag.type = 'text/javascript';
-        script_tag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCHNMMsn8uWjLdbAQUWpT0Vsnc11DzNHcg&libraries=places&callback=initMap"
-        script_tag.setAttribute('defer','');
-        script_tag.setAttribute('async','');
-       
-       /* var element = $("<div>");
-        element.attr("id", "googleMap");
-        element.html(script_tag);*/
-        $("#googleMap").append(script_tag);
-}
-
 function DisplayGraphs(id) {
 
     var schoolID = id;
@@ -369,7 +350,7 @@ function DisplayGraphs(id) {
         var aidData = GetAidData(dataObject);
         DrawAidGraph(aidData);
 
-        DrawGoogleMap(dataObject);
+        DrawGoogleMap();
 
     });
 }
