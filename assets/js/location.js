@@ -12,14 +12,14 @@ function initMap() {
 
   geocodeLatLng(geocoder, map, infowindow, myCenter);
 }
-// function to get the map an actual address reverse geocoded from lat a=lng
+// function to get the map an actual address reverse geocoded from lat lng
 function geocodeLatLng(geocoder, map, infowindow, myCenter) {
   
   geocoder.geocode({ 'location': myCenter }, function (results, status) {
     if (status === 'OK') {
       if (results[0]) {
         map.setZoom(11);
-        console.log(myCenter);
+       // console.log(myCenter);
         var marker = new google.maps.Marker({
           position: myCenter,
           map: map
@@ -28,12 +28,13 @@ function geocodeLatLng(geocoder, map, infowindow, myCenter) {
         infowindow.open(map, marker);
       }
     }else{
+      //if no info 
       infowindow.setContent("Address Unavailable");
       infowindow.open(map, marker);
     }
   });
 }
-
+// draws the actual graph in html
 function DrawGoogleMap() {
   $("#google-map").empty();
   var script_tag = document.createElement('script');
