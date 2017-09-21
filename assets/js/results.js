@@ -378,3 +378,4 @@ function DisplayGraphs(id) {
         DrawGoogleMap();
     });
 }
+
