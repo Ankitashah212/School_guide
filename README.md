@@ -1,3 +1,5 @@
+https://ankitashah212.github.io/School_guide/
+
 # University Search
 A dynamic website to search through Colleges and Universities with clear tables of key criteria and intuitive user flow to pages with detailed results.
 
